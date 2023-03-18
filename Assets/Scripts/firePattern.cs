@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class firePattern : MonoBehaviour
 {
-    private float angle = 0f;
+    [SerializeField] protected float angle = 0f;
     public ObjectPool bulletPool;
 
 

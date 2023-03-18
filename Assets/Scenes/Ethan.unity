@@ -291,7 +291,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.22316661, g: 0.5566038, b: 0.38689792, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -500,7 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 857662440}
   m_Layer: 0
-  m_Name: YBulletContainer
+  m_Name: PBulletContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 1164419977}
   - component: {fileID: 1164419976}
   - component: {fileID: 1164419978}
+  - component: {fileID: 1164419979}
   m_Layer: 0
   m_Name: enemyPlaceholder
   m_TagString: Untagged
@@ -866,6 +867,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a64e42f5872066448c3672a7466316d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angle: 0
+  bulletPool: {fileID: 1388706338}
+  Cooldown: 0.1
+  AngleIncrease: 0.25
+--- !u!114 &1164419979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164419975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e42f5872066448c3672a7466316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 3
   bulletPool: {fileID: 1388706338}
   Cooldown: 0.1
   AngleIncrease: 0.25
@@ -880,7 +898,7 @@ GameObject:
   - component: {fileID: 1388706339}
   - component: {fileID: 1388706338}
   m_Layer: 0
-  m_Name: YBulletPool
+  m_Name: PBulletPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
