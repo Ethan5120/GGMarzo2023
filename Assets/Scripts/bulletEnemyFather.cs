@@ -26,5 +26,10 @@ public class bulletEnemyFather : PooledObject
             playerComponent.TakeDamage(damage);
             Release();
         }
+
+        if (collision.gameObject.TryGetComponent<Wall>(out Wall wallComponent))
+        {
+            Release();
+        }
     }
 }
