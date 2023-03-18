@@ -781,6 +781,8 @@ GameObject:
   - component: {fileID: 1164419976}
   - component: {fileID: 1164419978}
   - component: {fileID: 1164419979}
+  - component: {fileID: 1164419981}
+  - component: {fileID: 1164419980}
   m_Layer: 0
   m_Name: enemyPlaceholder
   m_TagString: Untagged
@@ -887,6 +889,38 @@ MonoBehaviour:
   bulletPool: {fileID: 1388706338}
   Cooldown: 0.1
   AngleIncrease: 0.25
+--- !u!114 &1164419980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164419975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e42f5872066448c3672a7466316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 3
+  bulletPool: {fileID: 1388706338}
+  Cooldown: 0.1
+  AngleIncrease: -0.25
+--- !u!114 &1164419981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164419975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e42f5872066448c3672a7466316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  bulletPool: {fileID: 1388706338}
+  Cooldown: 0.1
+  AngleIncrease: -0.25
 --- !u!1 &1388706337
 GameObject:
   m_ObjectHideFlags: 0
