@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class bulletEnemyFather : PooledObject
 {
-    private Vector2 moveDirection;
+    protected Vector2 moveDirection;
     [SerializeField] float moveSpeed;
-    private float damage = 1;
+    protected float damage = 1, TimeForDestruction = 0;
 
-
-    void Update()
+    protected void Update()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
@@ -19,7 +18,7 @@ public class bulletEnemyFather : PooledObject
         moveDirection = dir;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player playerComponent))
         {

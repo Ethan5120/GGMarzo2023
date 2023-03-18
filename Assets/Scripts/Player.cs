@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Vector3 mousePos;
-    public float minY, maxY;
-    public float minX, maxX;
-    public enum PolarityState{CYAN, ORANGE, PURPLE};
+    [SerializeField] float minY, maxY;
+    [SerializeField] float minX, maxX;
+    protected enum PolarityState{ CYAN, ORANGE, PURPLE };
 
     [SerializeField]
     floatVariable playerHP;
@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
         float posXlimited = Mathf.Clamp(mousePos.x, minX, maxX);
         transform.position = new Vector3(posXlimited, posYlimited, 0);
     }
+
+
     public void TakeDamage(float damageAmmount)
     {
         playerHP.floatValue -= damageAmmount;

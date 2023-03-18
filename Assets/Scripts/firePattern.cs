@@ -5,29 +5,40 @@ using UnityEngine;
 public class firePattern : MonoBehaviour
 {
     private float angle = 0f;
-    public ObjectPool yBulletPool;
+    public ObjectPool bulletPool;
 
+
+    [SerializeField] float Cooldown = 0.1f, AngleIncrease = 1f;
 
     private void Start()
     {
-        InvokeRepeating("Fire", 0f, 0.1f);
+        Fire();
     }
 
     private void Fire()
     {
-        float bulDirX = transform.position.x + Mathf.Sin((angle + Mathf.PI / 100f));
-        float bulDirY = transform.position.y + Mathf.Cos((angle + Mathf.PI / 100f));
+        StartCoroutine(firecool());
+    }
 
-        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-        Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+    IEnumerator firecool()
+    {
+        while (true)
+        {
+            float bulDirX = transform.position.x + Mathf.Sin((angle + Mathf.PI / 100f));
+            float bulDirY = transform.position.y + Mathf.Cos((angle + Mathf.PI / 100f));
 
-        bulletEYellow bullet = (bulletEYellow) yBulletPool.Get();
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = transform.rotation;
-        bullet.GetComponent <bulletEYellow>().SetMoveDirection(bulDir);
+            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
-        angle += 10f;
+            bulletEnemyFather bullet = (bulletEnemyFather)bulletPool.Get();
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.GetComponent<bulletEnemyFather>().SetMoveDirection(bulDir);
 
+            angle += AngleIncrease;
+
+            yield return new WaitForSeconds(Cooldown);
+        }
     }
 
 }

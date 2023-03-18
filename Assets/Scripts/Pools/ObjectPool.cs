@@ -11,7 +11,12 @@ public class ObjectPool : MonoBehaviour
     [Header("Object To Load")]
     [SerializeField] protected PooledObject pObject;
 
+    [Header("ObjectContainer")]
+    [SerializeField] GameObject ObjectContainer;
+
     Stack<PooledObject> stack = new Stack<PooledObject>();
+
+
 
     private void Start()
     {
@@ -25,9 +30,11 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < InitSize; i++)
         {
             instancia = Instantiate(pObject);
+            instancia.transform.parent = ObjectContainer.transform;
             instancia.pool = this;
             instancia.gameObject.SetActive(false);
             stack.Push(instancia);
+            
         }
     }
 
@@ -37,6 +44,7 @@ public class ObjectPool : MonoBehaviour
         {
             PooledObject newinstance = Instantiate(pObject);
             newinstance.pool = this;
+            newinstance.transform.parent = ObjectContainer.transform;
             return newinstance;
         }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyParent : PooledObject
 {
     [SerializeField] float HP;
+    protected enum enemyState { STARTING, ACTIVE };
     void Start()
     {
         
