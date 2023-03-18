@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     Vector3 mousePos;
     [SerializeField] float minY, maxY;
     [SerializeField] float minX, maxX;
-    protected enum PolarityState{ CYAN, ORANGE, PURPLE };
+    public enum PolarityState{ CYAN, ORANGE, PURPLE };
 
     [SerializeField]
     floatVariable playerHP;
@@ -33,5 +33,15 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damageAmmount)
     {
         playerHP.floatValue -= damageAmmount;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        /*if (collision.gameObject.TryGetComponent<bulletE>(out Player playerComponent))
+        {
+            playerComponent.TakeDamage(damage);
+            Release();
+        }*/
+
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletEYellow : bulletEnemyFather
+public class bulletEPurple : bulletEnemyFather
 {
     
 }
