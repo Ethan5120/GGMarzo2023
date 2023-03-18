@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         playerHP.floatValue = maxHP;
     }
 
-    // Update is called once per frame
+    // Movimiento script
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
