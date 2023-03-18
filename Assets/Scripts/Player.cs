@@ -7,19 +7,20 @@ public class Player : MonoBehaviour
     Vector3 mousePos;
     [SerializeField] float minY, maxY;
     [SerializeField] float minX, maxX;
-    public enum PolarityState{ CYAN, ORANGE, PURPLE };
+    public enum PolarityState{ CYAN, ORANGE, PURPLE, NORMAL };
 
     [SerializeField]
     floatVariable playerHP;
     float maxHP = 20;
-   
+
+    public PolarityState pState = PolarityState.NORMAL;
 
     void Start()
     {
         playerHP.floatValue = maxHP;
     }
 
-    // Movimiento script
+    
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -27,21 +28,65 @@ public class Player : MonoBehaviour
         float posYlimited = Mathf.Clamp(mousePos.y, minY, maxY);
         float posXlimited = Mathf.Clamp(mousePos.x, minX, maxX);
         transform.position = new Vector3(posXlimited, posYlimited, 0);
-    }
 
 
-    public void TakeDamage(float damageAmmount)
-    {
-        playerHP.floatValue -= damageAmmount;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /*if (collision.gameObject.TryGetComponent<bulletE>(out Player playerComponent))
+        if(Input.GetKeyDown(KeyCode.A))
         {
-            playerComponent.TakeDamage(damage);
-            Release();
-        }*/
+            pState = PolarityState.CYAN;
+        }
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            pState = PolarityState.ORANGE;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            pState = PolarityState.PURPLE;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            pState = PolarityState.NORMAL;
+        }
+    }
+
+
+    public void CheckPolarity(bulletEnemyFather.PolarityType polarityType, float damageToDeal)
+    {
+        switch(polarityType)
+        {
+            case bulletEnemyFather.PolarityType.CYANB:
+                {
+                    if (pState != PolarityState.CYAN)
+                    {
+                        TakeDamage(damageToDeal);
+                    }
+                    break;
+                }
+
+            case bulletEnemyFather.PolarityType.ORANGEB:
+                {
+                    if (pState != PolarityState.ORANGE)
+                    {
+                        TakeDamage(damageToDeal);
+                    }
+                    break;
+                }
+
+            case bulletEnemyFather.PolarityType.PURPLEB:
+                {
+                    if (pState != PolarityState.PURPLE)
+                    {
+                        TakeDamage(damageToDeal);
+                    }
+                    break;
+                }
+        }
+
+    }
+    public void TakeDamage(float damageAmount)
+    {
+        playerHP.floatValue -= damageAmount;
     }
 }

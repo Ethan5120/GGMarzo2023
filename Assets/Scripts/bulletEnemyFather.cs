@@ -6,7 +6,9 @@ public class bulletEnemyFather : PooledObject
 {
     protected Vector2 moveDirection;
     [SerializeField] float moveSpeed;
-    protected float damage = 1, TimeForDestruction = 0;
+    protected float damage = 1;
+    public enum PolarityType { CYANB, PURPLEB, ORANGEB }
+    public PolarityType bType;
 
     protected void Update()
     {
@@ -22,7 +24,7 @@ public class bulletEnemyFather : PooledObject
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player playerComponent))
         {
-            playerComponent.TakeDamage(damage);
+            playerComponent.CheckPolarity(bType, damage);
             Release();
         }
 
