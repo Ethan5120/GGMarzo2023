@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Float Variable", order = 1)]
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Variables/Float Variable", order = 1)]
 
 public class floatVariable : ScriptableObject
 {

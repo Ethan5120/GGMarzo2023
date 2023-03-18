@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
-    // Start is called before the first frame update
+{ 
+    public enum PolarityState{CYAN, ORANGE, PURPLE};
+
+    [SerializeField]
+    floatVariable playerHP;
+    float maxHP = 20;
+   
+
     void Start()
     {
-        
+        playerHP.floatValue = maxHP;
     }
 
     // Update is called once per frame
@@ -17,6 +23,6 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(float damageAmmount)
     {
-
+        playerHP.floatValue -= damageAmmount;
     }
 }
