@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyParent : MonoBehaviour
+public class EnemyParent : PooledObject
 {
-    // Start is called before the first frame update
+    [SerializeField] float HP;
     void Start()
     {
         
@@ -16,5 +16,20 @@ public class EnemyParent : MonoBehaviour
         
     }
 
-    TakeDamege
+    public void TakeDamage(float damageAmount)
+    {
+        HP -= damageAmount;
+
+        if (HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected void Die()
+    {
+        //GetComponent<lootBag>().InstantiateLoot(transform.position);
+        Release();
+    }
+
 }
