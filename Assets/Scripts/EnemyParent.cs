@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyParent : PooledObject
 {
     [SerializeField] float HP;
-    protected enum enemyState { STARTING, ACTIVE };
+    public enum enemyState { STARTING, ACTIVE };
     enemyState eState = enemyState.STARTING;
-    public firePattern streams;
+    public firePattern stream;
     protected bool HasFired = false;
-
+    protected int distanceToMove;
+    public float moveSpeed = 1;
+    Rigidbody2D rb;
+    Vector2 move;
 
     void Start()
     {
-        streams = this.gameObject.GetComponent<firePattern>();
+        rb = GetComponent<Rigidbody2D>();
+        distanceToMove = Random.Range(1, 3);
+        stream = this.gameObject.GetComponent<firePattern>();
         eState = enemyState.STARTING;
+        move.x = 0;
+        move.y = 1;
     }
 
     // Update is called once per frame
@@ -38,7 +46,15 @@ public class EnemyParent : PooledObject
 
     void SettingUp()
     {
-        eState = enemyState.ACTIVE;
+        if (transform.position.y < transform.position.y - distanceToMove)
+        {
+            rb.velocity = new Vector2(move.x, - move.y) * moveSpeed;
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+            eState = enemyState.ACTIVE;
+        }
     }
 
 
@@ -46,7 +62,7 @@ public class EnemyParent : PooledObject
     {
         if (HasFired == false) 
         {
-            streams.Fire();
+            stream.Fire();
             HasFired = true;
         }
     }
