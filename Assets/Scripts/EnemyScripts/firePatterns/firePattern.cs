@@ -6,20 +6,15 @@ public class firePattern : MonoBehaviour
 {
     [SerializeField] protected float angle;
     public ObjectPool bulletPool;
-    [SerializeField] float streamsAmmount;
-    [SerializeField] float Cooldown = 0.1f, AngleIncrease = 1f;
+    [SerializeField] protected float streamsAmmount;
+    [SerializeField] protected float Cooldown = 0.1f, AngleIncrease = 1f;
 
-    private void Start()
-    {
-        //Fire();
-    }
-
-    public void Fire()
+    virtual public void Fire()
     {
         StartCoroutine(firecool());
     }
 
-    IEnumerator firecool()
+    protected IEnumerator firecool()
     {
         while (true)
         {
@@ -31,10 +26,10 @@ public class firePattern : MonoBehaviour
                 Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
                 Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
-                bulletEnemyFather bullet = (bulletEnemyFather)bulletPool.Get();
+                bulletPrime bullet = (bulletPrime)bulletPool.Get();
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = transform.rotation;
-                bullet.GetComponent<bulletEnemyFather>().SetMoveDirection(bulDir);
+                bullet.GetComponent<bulletPrime>().SetMoveDirection(bulDir);
 
                 angle += AngleIncrease * streamsAmmount;
             }

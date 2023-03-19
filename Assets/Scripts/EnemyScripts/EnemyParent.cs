@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EnemyParent : PooledObject
+public class EnemyParent : PooledObject, IProduct
 {
+    [SerializeField] float MaxHP;
     [SerializeField] float HP;
     public enum enemyState { STARTING, ACTIVE };
     enemyState eState = enemyState.STARTING;
@@ -15,19 +16,24 @@ public class EnemyParent : PooledObject
     Rigidbody2D rb;
     Vector2 move, startLocation;
 
-    void Start()
+    protected void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        distanceToMove = Random.Range(2, 7);
-        stream = this.gameObject.GetComponent<firePattern>();
-        eState = enemyState.STARTING;
-        move.x = 0;
-        move.y = 1;
-        startLocation = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Iniciar()
+    {
+        eState = enemyState.STARTING;
+        startLocation = transform.position;
+        distanceToMove = Random.Range(2, 7);
+        rb = GetComponent<Rigidbody2D>();
+        stream = this.gameObject.GetComponent<firePattern>();
+        move.x = 0;
+        move.y = 1;
+        HP = MaxHP;
+        HasFired = false;
+    }
+
+    public void Update()
     {
         switch (eState)
         {
@@ -45,7 +51,7 @@ public class EnemyParent : PooledObject
         }
     }
 
-    void SettingUp()
+    protected void SettingUp()
     {
         if (transform.position.y > startLocation.y - distanceToMove)
         {
@@ -59,7 +65,7 @@ public class EnemyParent : PooledObject
     }
 
 
-    void AttackMode()
+    protected void AttackMode()
     {
         if (HasFired == false) 
         {
@@ -83,14 +89,5 @@ public class EnemyParent : PooledObject
     {
         //GetComponent<lootBag>().InstantiateLoot(transform.position);
         Release();
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<Player>(out Player playerComponent) || collision.gameObject.TryGetComponent<EnemyParent>(out EnemyParent enemyComponent))
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
     }
 }
