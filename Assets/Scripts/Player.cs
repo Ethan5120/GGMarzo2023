@@ -8,16 +8,21 @@ public class Player : MonoBehaviour
     [SerializeField] float minY, maxY;
     [SerializeField] float minX, maxX;
     public enum PolarityState{ CYAN, ORANGE, PURPLE, NORMAL };
+    Animator anim;
+
 
     [SerializeField]
     floatVariable playerHP;
     float maxHP = 20;
+
+
 
     public PolarityState pState = PolarityState.NORMAL;
 
     void Start()
     {
         playerHP.floatValue = maxHP;
+        anim = GetComponent<Animator>();
     }
 
     
@@ -49,6 +54,32 @@ public class Player : MonoBehaviour
         {
             pState = PolarityState.NORMAL;
         }
+
+
+        switch (pState)
+        {
+            case PolarityState.NORMAL:
+                {
+                    anim.SetInteger("polarState",  0);
+                    break;
+                }
+            case PolarityState.CYAN:
+                {
+                    anim.SetInteger("polarState", 1);
+                    break;
+                }
+            case PolarityState.PURPLE:
+                {
+                    anim.SetInteger("polarState", 2);
+                    break;
+                }
+            case PolarityState.ORANGE:
+                {
+                    anim.SetInteger("polarState", 3);
+                    break;
+                }
+        }
+
     }
 
 
