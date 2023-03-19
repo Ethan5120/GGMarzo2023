@@ -13,16 +13,17 @@ public class EnemyParent : PooledObject
     protected int distanceToMove;
     public float moveSpeed = 1;
     Rigidbody2D rb;
-    Vector2 move;
+    Vector2 move, startLocation;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        distanceToMove = Random.Range(1, 3);
+        distanceToMove = Random.Range(2, 7);
         stream = this.gameObject.GetComponent<firePattern>();
         eState = enemyState.STARTING;
         move.x = 0;
         move.y = 1;
+        startLocation = transform.position;
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class EnemyParent : PooledObject
 
     void SettingUp()
     {
-        if (transform.position.y < transform.position.y - distanceToMove)
+        if (transform.position.y > startLocation.y - distanceToMove)
         {
             rb.velocity = new Vector2(move.x, - move.y) * moveSpeed;
         }
@@ -84,4 +85,12 @@ public class EnemyParent : PooledObject
         Release();
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Player>(out Player playerComponent) || collision.gameObject.TryGetComponent<EnemyParent>(out EnemyParent enemyComponent))
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+    }
 }
