@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float minX, maxX;
     public enum PolarityState{ CYAN, ORANGE, PURPLE, NORMAL };
     Animator anim;
+    public firePattern stream;
 
 
     [SerializeField]
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     {
         playerHP.floatValue = maxHP;
         anim = GetComponent<Animator>();
+        stream = this.gameObject.GetComponent<firePattern>();
     }
 
     
@@ -53,6 +55,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             pState = PolarityState.NORMAL;
+        }
+
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            //stream.Fire();
         }
 
 
