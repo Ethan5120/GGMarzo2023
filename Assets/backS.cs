@@ -7,6 +7,7 @@ public class backS : MonoBehaviour
 {
     public void BackMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
     }
 
