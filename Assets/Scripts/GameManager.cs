@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         HasBossSpawned = false;
         playerScore.floatValue = 0;
+        playerHScore.floatValue = PlayerPrefs.GetFloat("Hi-Score");
         bossDead.boolValue = false;
 
         if (playerHScore.floatValue < 999999)
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
         if (playerHScore.floatValue < playerScore.floatValue)
         {
             playerHScore.floatValue = playerScore.floatValue;
+            PlayerPrefs.SetFloat("Hi-Score", playerScore.floatValue);
         }
         SceneManager.LoadScene(2);
     }
