@@ -7,6 +7,7 @@ public class EnemyParent : PooledObject, IProduct
 {
     [SerializeField] float MaxHP;
     [SerializeField] float HP;
+    [SerializeField] floatVariable Score;
     public enum enemyState { STARTING, ACTIVE };
     enemyState eState = enemyState.STARTING;
     public firePattern stream;
@@ -19,6 +20,7 @@ public class EnemyParent : PooledObject, IProduct
 
     protected void Start()
     {
+
     }
 
     public void Iniciar()
@@ -89,6 +91,7 @@ public class EnemyParent : PooledObject, IProduct
 
     protected void Die()
     {
+        Score.floatValue += 50;
         deadSound.Play();
         //GetComponent<lootBag>().InstantiateLoot(transform.position);
         Release();

@@ -375,6 +375,8 @@ MonoBehaviour:
   pool: {fileID: 0}
   MaxHP: 500
   HP: 0
+  Score: {fileID: 11400000, guid: 01899a4d9a873d94a86ffd12ab0ca40c, type: 2}
+  bossDead: {fileID: 11400000, guid: 22238166f9d4ffb4c9ff9e0d3f2fbaa9, type: 2}
   moveSpeed: 0.5
   streams: []
 --- !u!1 &7793738503307052949
