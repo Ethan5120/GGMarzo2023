@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 560
   bulletPool: {fileID: 0}
-  streamsAmmount: 6
+  streamsAmmount: 4
   Cooldown: 0.25
-  AngleIncrease: 5
+  AngleIncrease: 2
 --- !u!1 &3319757399072903957
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,9 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 560
   bulletPool: {fileID: 0}
-  streamsAmmount: 6
+  streamsAmmount: 4
   Cooldown: 0.25
-  AngleIncrease: -5
+  AngleIncrease: -2
 --- !u!1 &4515487882204315550
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,9 +144,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 0
   bulletPool: {fileID: 0}
-  streamsAmmount: 36
-  Cooldown: 2
-  AngleIncrease: 5
+  streamsAmmount: 18
+  Cooldown: 1
+  AngleIncrease: 10
 --- !u!1 &4913991938427739102
 GameObject:
   m_ObjectHideFlags: 0
