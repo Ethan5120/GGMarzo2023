@@ -216,6 +216,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Heal()
+    {
+        if(playerHP.floatValue < 25)
+        {
+            playerHP.floatValue += 5;
+        }
+        else if (playerHP.floatValue >= 25)
+        {
+            playerHP.floatValue = 30;
+        }
+    }
+
     public void TakeDamage(float damageAmount)
     {
         playerHP.floatValue -= damageAmount;

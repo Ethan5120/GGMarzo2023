@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2571364532295441598}
   - component: {fileID: 2571364532295441597}
   - component: {fileID: 2571364532295441596}
+  - component: {fileID: 4082685212228558848}
   - component: {fileID: 4380072863990258977}
   - component: {fileID: 2147324286170991072}
   m_Layer: 8
@@ -186,6 +187,22 @@ MonoBehaviour:
   Score: {fileID: 11400000, guid: 01899a4d9a873d94a86ffd12ab0ca40c, type: 2}
   stream: {fileID: 0}
   moveSpeed: 1
+--- !u!114 &4082685212228558848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571364532295441570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade308c54e885a14c9220573a14210e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropForce: 100
+  droppedItemPrefab: {fileID: 1336608656973893716, guid: d60e24f7b06098647965542cfaf6c7a3, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 38eb2ee81e0a3474a86ce794cac4de3f, type: 2}
 --- !u!114 &4380072863990258977
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -93,7 +93,7 @@ public class EnemyParent : PooledObject, IProduct
     {
         Score.floatValue += 50;
         deadSound.Play();
-        //GetComponent<lootBag>().InstantiateLoot(transform.position);
+        GetComponent<lootBag>().InstantiateLoot(transform.position);
         Release();
     }
 }
