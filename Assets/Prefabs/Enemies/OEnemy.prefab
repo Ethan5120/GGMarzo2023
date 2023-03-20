@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1397932729
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1979384907, guid: 44576cdfd8292e248ad41b7affc9b2c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140,7 +140,7 @@ MonoBehaviour:
   angle: 0
   bulletPool: {fileID: 0}
   streamsAmmount: 6
-  Cooldown: 0.05
+  Cooldown: 0.25
   AngleIncrease: 10
 --- !u!114 &4760980881170924703
 MonoBehaviour:

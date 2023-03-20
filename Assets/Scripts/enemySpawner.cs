@@ -45,7 +45,7 @@ public class enemySpawner : MonoBehaviour
 
         if (state == SpawnState.WAITING)
         {
-            if (!EnemyIsAlive())
+            if (!EnemyIsAlive() && wavesCompleted.boolValue == false)
             {
                 WaveCompleted();
             }
@@ -66,18 +66,17 @@ public class enemySpawner : MonoBehaviour
         else
         {
             waveCountdown -= Time.deltaTime;
-            //countdownUI.floatValue = waveCountdown;
         }
     }
 
     void WaveCompleted()
     {
         Debug.Log("Wave Completed");
-
+        isWaveStarting.boolValue = false;
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
-        if (nextWave + 1 > waves.Length - 1)
+        if (nextWave + 1 > waves.Length - 1 && wavesCompleted.boolValue == false)
         {
             Debug.Log("ALL WAVES COMPLETE!");
             wavesCompleted.boolValue = true;
@@ -108,6 +107,7 @@ public class enemySpawner : MonoBehaviour
     {
         Debug.Log("Spawning Wave:" + _wave.name);
         state = SpawnState.SPAWNING;
+        isWaveStarting.boolValue = true;
 
 
 
@@ -126,11 +126,15 @@ public class enemySpawner : MonoBehaviour
 
     void spawnEnemy(EnemyFactory _enemy)
     {
-        Debug.Log("Spawning Enemy:" + _enemy.name);
+        if(wavesCompleted.boolValue == false)
+        {
+            Debug.Log("Spawning Enemy:" + _enemy.name);
 
-        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        EnemyParent thisenemy = (EnemyParent)_enemy.GetProduct(new Vector2(_sp.position.x, _sp.position.y));
+            EnemyParent thisenemy = (EnemyParent)_enemy.GetProduct(new Vector2(_sp.position.x, _sp.position.y));
+
+        }
     }
 
 }

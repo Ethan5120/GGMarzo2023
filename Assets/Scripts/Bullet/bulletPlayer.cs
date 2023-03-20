@@ -11,6 +11,11 @@ public class bulletPlayer : bulletPrime
             enemyComponent.TakeDamage(damage);
             Release();
         }
+        if(collision.gameObject.TryGetComponent<BossController>(out BossController bossComponent))
+        {
+            bossComponent.TakeDamage(damage);
+            Release();
+        }
 
         if (collision.gameObject.TryGetComponent<Wall>(out Wall wallComponent))
         {
