@@ -6,10 +6,14 @@ public class BossController : PooledObject, IProduct
 {
     [SerializeField] float MaxHP;
     [SerializeField] float HP;
+    [SerializeField] floatVariable Score;
+    [SerializeField] boolVariable bossDead;
     public enum enemyState { STARTING, ACTIVE };
     enemyState eState = enemyState.STARTING;
     protected bool HasFired = false;
     public float moveSpeed = 1;
+
+    [Header("AttackPoints")]
     public firePattern[] streams;
 
     Rigidbody2D rb;
@@ -85,6 +89,8 @@ public class BossController : PooledObject, IProduct
 
     protected void Die()
     {
+        Score.floatValue += 100000;
+        bossDead.boolValue = true;
         //GetComponent<lootBag>().InstantiateLoot(transform.position);
         Release();
     }

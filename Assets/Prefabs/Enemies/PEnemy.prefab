@@ -183,6 +183,7 @@ MonoBehaviour:
   pool: {fileID: 0}
   MaxHP: 30
   HP: 0
+  Score: {fileID: 11400000, guid: 01899a4d9a873d94a86ffd12ab0ca40c, type: 2}
   stream: {fileID: 0}
   moveSpeed: 1
 --- !u!114 &4380072863990258977
