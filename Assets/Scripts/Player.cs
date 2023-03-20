@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     float fireCool = 0;
     float flashTime = 0;
 
+    [Header("UI Elements")]
+    [SerializeField] hpBar healthBar;
    
     Animator anim;
 
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
         playerHP.floatValue = maxHP;
         bombAmount.intValue = 3;
         anim = GetComponent<Animator>();
+        healthBar.SetMaxHealth(maxHP);
     }
 
     
@@ -204,5 +207,6 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         playerHP.floatValue -= damageAmount;
+        healthBar.SetHealth(playerHP.floatValue);
     }
 }

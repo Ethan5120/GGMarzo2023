@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     [SerializeField] boolVariable isWavesCompleted;
-    [SerializeField] BossFactory bossFactory;
+    [SerializeField] floatVariable playerHealth;
     [SerializeField] intVariable bCharges;
-    [SerializeField] SpriteRenderer[] bChargesDisplay;
+    [SerializeField] BossFactory bossFactory;
+    [SerializeField] Image[] bChargesDisplay;
     [SerializeField] Sprite[] bChargesSprites;
     bool HasBossSpawned = false;
     void Start()
@@ -45,5 +47,9 @@ public class GameManager : MonoBehaviour
                     break;
                 }
         }
+
+
+
+
     }
 }
