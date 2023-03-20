@@ -1037,6 +1037,38 @@ MonoBehaviour:
     - {fileID: 1499080558}
     count: 2
     rate: 1
+  - name: Wave1
+    enemy:
+    - {fileID: 1499080558}
+    - {fileID: 1721891435}
+    count: 4
+    rate: 1
+  - name: Wave2
+    enemy:
+    - {fileID: 1499080558}
+    - {fileID: 1467109086}
+    count: 4
+    rate: 1
+  - name: Wave3
+    enemy:
+    - {fileID: 1721891435}
+    - {fileID: 1467109086}
+    count: 2
+    rate: 1
+  - name: Wave4
+    enemy:
+    - {fileID: 1721891435}
+    - {fileID: 1467109086}
+    - {fileID: 1499080558}
+    count: 4
+    rate: 1
+  - name: Wave5
+    enemy:
+    - {fileID: 1721891435}
+    - {fileID: 1467109086}
+    - {fileID: 1499080558}
+    count: 8
+    rate: 1
   spawnPoints:
   - {fileID: 368247636}
   - {fileID: 508273300}
