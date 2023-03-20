@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Derrota.unity
     guid: a75ecd5f39f32414b8bd02db6f033800
   - enabled: 1
+    path: Assets/Scenes/Rata gorda rapera.unity
+    guid: 88cd0f4e4da279a4190afcf47dd4cbba
+  - enabled: 1
     path: Assets/Scenes/pausa.unity
     guid: daa5519ddd83479428aa5d0f3fe7dbba
   m_configObjects: {}
