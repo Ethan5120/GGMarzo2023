@@ -14,6 +14,7 @@ public class EnemyParent : PooledObject, IProduct
     protected int distanceToMove;
     public float moveSpeed = 1;
     Rigidbody2D rb;
+    AudioSource deadSound;
     Vector2 move, startLocation;
 
     protected void Start()
@@ -22,6 +23,7 @@ public class EnemyParent : PooledObject, IProduct
 
     public void Iniciar()
     {
+        deadSound = this.gameObject.GetComponent<AudioSource>();
         eState = enemyState.STARTING;
         startLocation = transform.position;
         distanceToMove = Random.Range(2, 7);
@@ -87,6 +89,7 @@ public class EnemyParent : PooledObject, IProduct
 
     protected void Die()
     {
+        deadSound.Play();
         //GetComponent<lootBag>().InstantiateLoot(transform.position);
         Release();
     }

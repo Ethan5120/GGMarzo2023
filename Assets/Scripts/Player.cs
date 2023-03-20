@@ -23,17 +23,20 @@ public class Player : MonoBehaviour
     [Header("AttackData")]
     [SerializeField] ObjectPool playerBullets;
     [SerializeField] float fireRate, aimAngle, angleIncrease, streamsAmount;
+    [SerializeField] AudioSource shootSFX;
 
     [Header("BombData")]
     [SerializeField] intVariable bombAmount;
     [SerializeField] GameObject bFlash;
     [SerializeField] floatVariable bullCool;
+    [SerializeField] AudioSource bombSFX;
     float fireCool = 0;
     float flashTime = 0;
 
     [Header("UI Elements")]
     [SerializeField] hpBar healthBar;
-   
+    [SerializeField] AudioSource pauseSFX;
+
     Animator anim;
 
     void Start()
@@ -75,17 +78,25 @@ public class Player : MonoBehaviour
             pState = PolarityState.NORMAL;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseSFX.Play();
+        }
+        
+
+
         if (Input.GetButtonDown("Jump") && bombAmount.intValue > 0)
         {
             ClearScreen();
             flashTime = 0.1f;
-            bullCool.floatValue = 0.3f;
+            bullCool.floatValue = 0.5f;
             bombAmount.intValue -= 1;
         }
 
         if (Input.GetButton("Fire1") && fireCool <= 0)
         {
             Fire();
+            shootSFX.Play();
             fireCool = 1f / fireRate;
         }
 
@@ -197,6 +208,7 @@ public class Player : MonoBehaviour
     protected void ClearScreen()
     {
         bulletEnemyFather[] enemyBullets = FindObjectsOfType<bulletEnemyFather>();
+        bombSFX.Play();
 
         foreach (bulletEnemyFather enemyBullet in enemyBullets)
         {
