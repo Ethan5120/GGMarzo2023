@@ -8,6 +8,7 @@ public class firePattern : MonoBehaviour
     public ObjectPool bulletPool;
     [SerializeField] protected float streamsAmmount;
     [SerializeField] protected float Cooldown = 0.1f, AngleIncrease = 1f;
+    [SerializeField] floatVariable bullCool;
 
     virtual public void Fire()
     {
@@ -18,22 +19,24 @@ public class firePattern : MonoBehaviour
     {
         while (true)
         {
-            for(int i = 0; i < streamsAmmount; i++)
+            if(bullCool.floatValue < 0f)
             {
-                float bulDirX = transform.position.x + Mathf.Sin((angle + ((360f / streamsAmmount) * i) * Mathf.PI) / (360f / streamsAmmount));
-                float bulDirY = transform.position.y + Mathf.Cos((angle + ((360f / streamsAmmount) * i) * Mathf.PI) / (360f / streamsAmmount));
+                for (int i = 0; i < streamsAmmount; i++)
+                {
+                    float bulDirX = transform.position.x + Mathf.Sin((angle + ((360f / streamsAmmount) * i) * Mathf.PI) / (360f / streamsAmmount));
+                    float bulDirY = transform.position.y + Mathf.Cos((angle + ((360f / streamsAmmount) * i) * Mathf.PI) / (360f / streamsAmmount));
 
-                Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-                Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+                    Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+                    Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
-                bulletPrime bullet = (bulletPrime)bulletPool.Get();
-                bullet.transform.position = transform.position;
-                bullet.transform.rotation = transform.rotation;
-                bullet.GetComponent<bulletPrime>().SetMoveDirection(bulDir);
+                    bulletPrime bullet = (bulletPrime)bulletPool.Get();
+                    bullet.transform.position = transform.position;
+                    bullet.transform.rotation = transform.rotation;
+                    bullet.GetComponent<bulletPrime>().SetMoveDirection(bulDir);
 
-                angle += AngleIncrease * streamsAmmount;
+                    angle += AngleIncrease * streamsAmmount;
+                }
             }
-
             yield return new WaitForSeconds(Cooldown);
         }
     }

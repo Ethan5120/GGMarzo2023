@@ -23,14 +23,22 @@ public class Player : MonoBehaviour
     [Header("AttackData")]
     [SerializeField] ObjectPool playerBullets;
     [SerializeField] float fireRate, aimAngle, angleIncrease, streamsAmount;
+
+    [Header("BombData")]
+    [SerializeField] intVariable bombAmount;
+    [SerializeField] GameObject bFlash;
+    [SerializeField] floatVariable bullCool;
     float fireCool = 0;
-    
+    float flashTime = 0;
+
    
     Animator anim;
 
     void Start()
     {
+        bFlash.SetActive(false);
         playerHP.floatValue = maxHP;
+        bombAmount.intValue = 3;
         anim = GetComponent<Animator>();
     }
 
@@ -64,14 +72,33 @@ public class Player : MonoBehaviour
             pState = PolarityState.NORMAL;
         }
 
+        if (Input.GetButtonDown("Jump") && bombAmount.intValue > 0)
+        {
+            ClearScreen();
+            flashTime = 0.1f;
+            bullCool.floatValue = 0.3f;
+            bombAmount.intValue -= 1;
+        }
 
-        if(Input.GetButton("Fire1") && fireCool <= 0)
+        if (Input.GetButton("Fire1") && fireCool <= 0)
         {
             Fire();
             fireCool = 1f / fireRate;
         }
 
         fireCool -= Time.deltaTime;
+        flashTime -= Time.deltaTime;
+        bullCool.floatValue -= Time.deltaTime;
+
+        if(flashTime > 0)
+        {
+            bFlash.SetActive(true);
+        }
+        else
+        {
+            bFlash.SetActive(false);
+        }
+
 
 
         switch (pState)
@@ -162,6 +189,16 @@ public class Player : MonoBehaviour
         bullet.GetComponent<bulletPrime>().SetMoveDirection(bulDir);
 
         aimAngle += angleIncrease * streamsAmount;
+    }
+
+    protected void ClearScreen()
+    {
+        bulletEnemyFather[] enemyBullets = FindObjectsOfType<bulletEnemyFather>();
+
+        foreach (bulletEnemyFather enemyBullet in enemyBullets)
+        {
+            enemyBullet.Release();
+        }
     }
 
     public void TakeDamage(float damageAmount)

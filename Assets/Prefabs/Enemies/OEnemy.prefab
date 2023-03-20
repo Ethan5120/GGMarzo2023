@@ -142,6 +142,7 @@ MonoBehaviour:
   streamsAmmount: 6
   Cooldown: 0.25
   AngleIncrease: 10
+  bullCool: {fileID: 11400000, guid: 3fef900b10557384b8acf1a36bdc0a42, type: 2}
 --- !u!114 &4760980881170924703
 MonoBehaviour:
   m_ObjectHideFlags: 0
