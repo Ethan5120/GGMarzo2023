@@ -221,10 +221,12 @@ public class Player : MonoBehaviour
         if(playerHP.floatValue < 25)
         {
             playerHP.floatValue += 5;
+            healthBar.SetHealth(playerHP.floatValue);
         }
         else if (playerHP.floatValue >= 25)
         {
             playerHP.floatValue = 30;
+            healthBar.SetHealth(playerHP.floatValue);
         }
     }
 
