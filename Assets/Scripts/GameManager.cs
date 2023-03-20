@@ -8,7 +8,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [Header("GameStateChecks")]
-    [SerializeField] boolVariable isWavesCompleted, bossDead;
+    [SerializeField] boolVariable isWavesCompleted;
+    [SerializeField] boolVariable bossDead;
     [SerializeField] AudioSource[] gameMusic;
 
     [Header("PlayerState")]
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] BossFactory bossFactory;
 
     [Header("ScoreSettings")]
-    [SerializeField] floatVariable playerScore, playerHScore;
+    [SerializeField] floatVariable playerScore;
+    [SerializeField] floatVariable playerHScore;
     [SerializeField] TextMeshProUGUI Score, HiScore;
 
     bool HasBossSpawned = false;
