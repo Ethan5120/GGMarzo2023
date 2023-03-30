@@ -8,6 +8,8 @@ public class BossController : PooledObject, IProduct
     [SerializeField] float HP;
     [SerializeField] floatVariable Score;
     [SerializeField] boolVariable bossDead;
+    AudioSource bossDeadSound;
+
     public enum enemyState { STARTING, ACTIVE };
     enemyState eState = enemyState.STARTING;
     protected bool HasFired = false;
@@ -22,6 +24,7 @@ public class BossController : PooledObject, IProduct
 
     public void Iniciar()
     {
+        bossDeadSound = this.gameObject.GetComponent<AudioSource>();
         eState = enemyState.STARTING;
         startLocation = transform.position;
         rb = GetComponent<Rigidbody2D>();
@@ -89,9 +92,9 @@ public class BossController : PooledObject, IProduct
 
     protected void Die()
     {
+        bossDeadSound.Play();
         Score.floatValue += 100000;
         bossDead.boolValue = true;
-        //GetComponent<lootBag>().InstantiateLoot(transform.position);
         Release();
     }
 

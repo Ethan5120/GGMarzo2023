@@ -83,6 +83,10 @@ public class GameManager : MonoBehaviour
         {
             GameLose();
         }
+        else if(playerHealth.floatValue > 0 && bossDead.boolValue == true)
+        {
+            GameWin();
+        }
 
 
 
@@ -105,5 +109,15 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("Hi-Score", playerScore.floatValue);
         }
         SceneManager.LoadScene(2);
+    }
+
+    void GameWin()
+    {
+        if (playerHScore.floatValue < playerScore.floatValue)
+        {
+            playerHScore.floatValue = playerScore.floatValue;
+            PlayerPrefs.SetFloat("Hi-Score", playerScore.floatValue);
+        }
+        SceneManager.LoadScene(3);
     }
 }

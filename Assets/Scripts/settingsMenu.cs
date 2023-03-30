@@ -35,5 +35,9 @@ public class settingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
     }
+    public void ResetScore()
+    {
+        PlayerPrefs.SetFloat("Hi-Score", 0);
+    }
 
 }
