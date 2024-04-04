@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Loot", menuName = "ScriptableObjects/LootGenerator", order = 2)]
+
 
 public class lootDrops : ScriptableObject
 {
