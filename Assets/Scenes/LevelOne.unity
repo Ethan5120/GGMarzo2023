@@ -4980,6 +4980,7 @@ GameObject:
   - component: {fileID: 1950167829}
   - component: {fileID: 1950167831}
   - component: {fileID: 1950167830}
+  - component: {fileID: 1950167832}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5094,6 +5095,30 @@ MonoBehaviour:
   playerHScore: {fileID: 11400000, guid: 9b9892fcae32011409e802d6ebd2daad, type: 2}
   Score: {fileID: 205455376}
   HiScore: {fileID: 1133884109}
+--- !u!114 &1950167832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950167828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c4e740a39ccc94790084c281772b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: 
+    Waves:
+    - {fileID: 11400000, guid: 22895d7221b75ac468690807ef47b541, type: 2}
+    delay: 0
+  Seed: 
+  spawnPoints: []
+  wavesCompleted: {fileID: 0}
+  isWaveStarting: {fileID: 0}
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  state: 2
 --- !u!1 &1977993983
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45d24df4ffa97784f9011f85dbc7417c, type: 3}
-  m_Name: Wave1a
+  m_Name: Wave3a
   m_EditorClassIdentifier: 
   enemyList:
-  - {fileID: 6943232784800435443, guid: 2a2e9fabbf236824e9f8873c87780bb7, type: 3}
   - {fileID: 2864448861506645135, guid: ca182c032743f044fa856d17be006798, type: 3}
-  - {fileID: 748556614814595385, guid: a4d7483ceb2bd8a42819385053cfc5e7, type: 3}
+  - {fileID: 2864448861506645135, guid: ca182c032743f044fa856d17be006798, type: 3}
+  - {fileID: 2864448861506645135, guid: ca182c032743f044fa856d17be006798, type: 3}
