@@ -10,7 +10,7 @@ public class GameManagerSO : ScriptableObject
     [Space(5)]
 
     [Header("PlayerData")]
-    
+    public float playerHealth = 5;
 
 
 }
