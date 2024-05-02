@@ -200,7 +200,6 @@ public class Player : MonoBehaviour
         bulletPrime bullet = (bulletPrime)playerBullets.Get();
         bullet.transform.position = transform.position;
         bullet.transform.rotation = transform.rotation;
-        bullet.GetComponent<bulletPrime>().SetMoveDirection(bulDir);
 
         aimAngle += angleIncrease * streamsAmount;
     }

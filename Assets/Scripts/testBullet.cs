@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class testBullet : MonoBehaviour
 {
-    public enum BulletType{Straight, LCurve, RCurve, Speed, LLoop, RLoop}
+    public enum BulletType{Straight, LCurve, RCurve, Speed, LWave, RWave, LDoubleWave, RDoubleWave}
     public BulletType type;
 
     [Header("Bullet Data:")]
@@ -17,25 +17,15 @@ public class testBullet : MonoBehaviour
     [Header("   Speed Bullets:")]
     public float speedIncrements;
 
-    [Header("   Loop Bullets:")]
-    public float loopStrength = 1;
-    public float speedLoop = 1;
-
-    float curveVal;
+    [Header("   Wave Bullets:")]
+    public float waveStrength = 1;
+    public float waveSpeed = 180;
+    public float waveFreq = 1;
+    public float waveAmp = 1;
     
-
-
-    void Awake()
-    {
-        curveStrength /= 360;
-        loopStrength /= 360;
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+// A bit of warning on the types of bullets here if you want to use de Wave types of bullets the waveSpeed must be 180 at the start,
+// but if you want to use the "double wave" ones, you can usea almost any value, 1 works great
+// Use this script to test variables to then know what to asign to the bullets form the pool in the shooting scripts.
     void Update()
     {
         switch (type)
@@ -66,19 +56,34 @@ public class testBullet : MonoBehaviour
                 break;
             }
 
-            case BulletType.LLoop:
+            case BulletType.LWave:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.Rotate(0, 0, loopStrength);
-                bulletSpeed += speedLoop;
+                transform.position += new Vector3(-Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                waveSpeed += waveStrength;
                 break;
             }            
             
-            case BulletType.RLoop:
+            case BulletType.RWave:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.Rotate(0, 0, -loopStrength);
-                bulletSpeed += speedLoop;
+                transform.position += new Vector3(Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                waveSpeed += waveStrength;
+                break;
+            }
+            case BulletType.LDoubleWave:
+            {
+                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += new Vector3(-Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                waveSpeed += waveStrength;
+                break;
+            }            
+            
+            case BulletType.RDoubleWave:
+            {
+                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += new Vector3(Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                waveSpeed += waveStrength;
                 break;
             }
 

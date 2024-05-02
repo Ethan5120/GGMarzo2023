@@ -32,7 +32,6 @@ public class firePattern : MonoBehaviour
                     bulletPrime bullet = (bulletPrime)bulletPool.Get();
                     bullet.transform.position = transform.position;
                     bullet.transform.rotation = transform.rotation;
-                    bullet.GetComponent<bulletPrime>().SetMoveDirection(bulDir);
 
                     angle += AngleIncrease * streamsAmmount;
                 }
