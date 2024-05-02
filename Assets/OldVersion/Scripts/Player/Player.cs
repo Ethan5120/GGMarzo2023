@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] floatVariable playerHP;
     [SerializeField] float maxHP = 20;
     [SerializeField] floatVariable score;
-    public enum PolarityState { CYAN, ORANGE, PURPLE, NORMAL };
+    public enum PolarityState { RED, BLUE, YELLOW, NORMAL }; //OnE = Red; Two = Blue; Three = Red
     public PolarityState pState = PolarityState.NORMAL;
 
 
@@ -60,17 +60,17 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.A))
         {
-            pState = PolarityState.CYAN;
+            pState = PolarityState.RED;
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            pState = PolarityState.ORANGE;
+            pState = PolarityState.BLUE;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            pState = PolarityState.PURPLE;
+            pState = PolarityState.YELLOW;
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -122,17 +122,17 @@ public class Player : MonoBehaviour
                     anim.SetInteger("polarState",  0);
                     break;
                 }
-            case PolarityState.CYAN:
+            case PolarityState.RED:
                 {
                     anim.SetInteger("polarState", 1);
                     break;
                 }
-            case PolarityState.PURPLE:
+            case PolarityState.BLUE:
                 {
                     anim.SetInteger("polarState", 2);
                     break;
                 }
-            case PolarityState.ORANGE:
+            case PolarityState.YELLOW:
                 {
                     anim.SetInteger("polarState", 3);
                     break;
@@ -146,9 +146,9 @@ public class Player : MonoBehaviour
     {
         switch(polarityType)
         {
-            case bulletEnemyFather.PolarityType.CYANB:
+            case bulletEnemyFather.PolarityType.REDB:
                 {
-                    if (pState != PolarityState.CYAN)
+                    if (pState != PolarityState.RED)
                     {
                         TakeDamage(damageToDeal);
                     }
@@ -159,9 +159,9 @@ public class Player : MonoBehaviour
                     break;
                 }
 
-            case bulletEnemyFather.PolarityType.ORANGEB:
+            case bulletEnemyFather.PolarityType.BLUEB:
                 {
-                    if (pState != PolarityState.ORANGE)
+                    if (pState != PolarityState.BLUE)
                     {
                         TakeDamage(damageToDeal);
                     }
@@ -172,9 +172,9 @@ public class Player : MonoBehaviour
                     break;
                 }
 
-            case bulletEnemyFather.PolarityType.PURPLEB:
+            case bulletEnemyFather.PolarityType.YELLOWB:
                 {
-                    if (pState != PolarityState.PURPLE)
+                    if (pState != PolarityState.YELLOW)
                     {
                         TakeDamage(damageToDeal);
                     }

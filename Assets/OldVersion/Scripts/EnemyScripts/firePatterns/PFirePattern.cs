@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PFirePattern : firePattern
+public class FireYPattern : firePattern
 {
     override public void Fire()
     {
-        bulletPool = GameObject.FindObjectOfType<PBulletPool>();
+        bulletPool = GameObject.FindObjectOfType<Bullet3Pool>();
         StartCoroutine(firecool());
     }
 }

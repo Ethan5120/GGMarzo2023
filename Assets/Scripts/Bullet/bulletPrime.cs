@@ -9,6 +9,7 @@ public class bulletPrime : PooledObject
     protected float damage = 1;
 
 
+
     protected void Update()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);

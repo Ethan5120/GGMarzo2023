@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bulletEnemyFather : bulletPrime
 {
-    public enum PolarityType { CYANB, PURPLEB, ORANGEB }
+    public enum PolarityType { REDB, BLUEB, YELLOWB }
     public PolarityType bType;
 
     override protected void OnTriggerEnter2D(Collider2D collision)

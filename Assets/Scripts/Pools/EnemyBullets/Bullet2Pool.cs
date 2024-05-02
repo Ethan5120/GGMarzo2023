@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletEOrange : bulletEnemyFather
+public class Bullet2Pool : BulletPool
 {
 
 }
