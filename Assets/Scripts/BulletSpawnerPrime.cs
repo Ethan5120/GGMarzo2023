@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class BossBulletSpawner : MonoBehaviour
+public class BulletSpawnerPrime : MonoBehaviour
 {
     [System.Serializable]
     public class BulletSpawner
@@ -13,11 +13,13 @@ public class BossBulletSpawner : MonoBehaviour
         public float shootDelay;
         public float angleIncrease;
         public Vector3 rotationStartPoint;
+        public int colorType;
     }
 
     public List<BulletSpawner> Streams = new List<BulletSpawner>();
     float ammountStreams;
-    [SerializeField] GameObject tBullet;
+    public List<BulletPool> colorBullet = new List<BulletPool>();
+    public bool willFire = false;
 
 
     void Awake()
@@ -32,19 +34,28 @@ public class BossBulletSpawner : MonoBehaviour
 
     void Update()
     {
-        for(int i = 0; i < ammountStreams; i++)
+        if(willFire)
         {
-            ShootPattern(Streams[i]);
+            for(int i = 0; i < ammountStreams; i++)
+            {
+                ShootPattern(Streams[i]);
+            }
         }
     }
 
+    void SelectColor()
+    {
+
+    }
 
     void ShootPattern(BulletSpawner stream)
     {
         if(stream.shootCool <= 0)
         {
-            var bullet = Instantiate(tBullet, stream.spawnPoint.transform.position, stream.spawnPoint.transform.rotation);
-            bullet.GetComponent<testBullet>().type = testBullet.BulletType.LCurve;
+            var bullet = (bulletPrime)colorBullet[stream.colorType].Get();
+            bullet.transform.position = stream.spawnPoint.transform.position;
+            bullet.transform.rotation = stream.spawnPoint.transform.rotation;
+            bullet.GetComponent<bulletPrime>().ChooseType(5);
             stream.shootCool = stream.shootDelay;
             stream.spawnPoint.transform.Rotate(new Vector3(0, 0, stream.angleIncrease));
         }

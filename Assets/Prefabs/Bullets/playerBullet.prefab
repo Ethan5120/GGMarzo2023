@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 829001087490003928}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9810029, y: -0.07216383, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,4 +162,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
-  moveSpeed: 10
+  type: 0
+  bulletSpeed: 1
+  curveStrength: 1
+  speedIncrements: 0
+  waveStrength: 1
+  waveSpeed: 180
+  waveFreq: 1
+  waveAmp: 1

@@ -15,7 +15,7 @@ public class bulletPrime : PooledObject
     public float curveStrength = 1;
 
     [Header("   Speed Bullets:")]
-    public float speedIncrements;
+    public float speedIncrements = 0.1f;
 
     [Header("   Wave Bullets:")]
     public float waveStrength = 1;
@@ -100,7 +100,61 @@ public class bulletPrime : PooledObject
         }
     }
     
-
+    public void ChooseType(int bPath)
+    {
+        switch(bPath)
+        {
+            case 0:
+            {
+                type = BulletType.Straight;
+                break;
+            }
+            case 1:
+            {
+                type = BulletType.LCurve;
+                break;
+            }
+            case 2:
+            {
+                type = BulletType.RCurve;
+                break;
+            }
+            case 3:
+            {
+                type = BulletType.Speed;
+                break;
+            }
+            case 4:
+            {
+                waveSpeed = 180;
+                type = BulletType.LWave;
+                break;
+            }
+            case 5:
+            {
+                waveSpeed = 180;
+                type = BulletType.RWave;
+                break;
+            }
+            case 6:
+            {
+                waveSpeed = 1;
+                type = BulletType.LDoubleWave;
+                break;
+            }
+            case 7:
+            {
+                waveSpeed = 1;
+                type = BulletType.RDoubleWave;
+                break;
+            }
+            default:
+            {
+                type = BulletType.Straight;
+                break;
+            }
+        }
+    }
     virtual protected void OnTriggerEnter2D(Collider2D collision)
     {
 
