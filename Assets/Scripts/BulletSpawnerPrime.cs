@@ -14,6 +14,7 @@ public class BulletSpawnerPrime : MonoBehaviour
         public float angleIncrease;
         public Vector3 rotationStartPoint;
         public int colorType;
+        public int bulletType;
     }
 
     public List<BulletSpawner> Streams = new List<BulletSpawner>();
@@ -32,13 +33,13 @@ public class BulletSpawnerPrime : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(willFire)
         {
             for(int i = 0; i < ammountStreams; i++)
             {
-                ShootPattern(Streams[i]);
+                ShootPattern(Streams[i], Streams[i].bulletType);
             }
         }
     }
@@ -48,16 +49,16 @@ public class BulletSpawnerPrime : MonoBehaviour
 
     }
 
-    void ShootPattern(BulletSpawner stream)
+    void ShootPattern(BulletSpawner stream, int bType)
     {
         if(stream.shootCool <= 0)
         {
             var bullet = (bulletPrime)colorBullet[stream.colorType].Get();
             bullet.transform.position = stream.spawnPoint.transform.position;
             bullet.transform.rotation = stream.spawnPoint.transform.rotation;
-            bullet.GetComponent<bulletPrime>().bulletLife = 5000;
-            bullet.GetComponent<bulletPrime>().bulletSpeed = 1;
-            bullet.GetComponent<bulletPrime>().ChooseType(0);
+            bullet.GetComponent<bulletPrime>().bulletLife = 1000;
+            bullet.GetComponent<bulletPrime>().bulletSpeed = 0.02f;
+            bullet.GetComponent<bulletPrime>().ChooseType(bType);
             stream.shootCool = stream.shootDelay;
             stream.spawnPoint.transform.Rotate(new Vector3(0, 0, stream.angleIncrease));
         }

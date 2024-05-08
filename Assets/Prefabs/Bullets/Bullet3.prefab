@@ -162,13 +162,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
-  type: 0
-  bulletSpeed: 1
+  type: 4
+  bulletSpeed: 0.01
   curveStrength: 1
   speedIncrements: 0.01
-  waveStrength: 0.1
+  waveStrength: 1
   waveSpeed: 180
-  waveFreq: 0.2
-  waveAmp: 0.2
+  waveFreq: 1
+  waveAmp: 2
   bulletLife: 0
   bType: 2

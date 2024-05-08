@@ -29,7 +29,7 @@ public class bulletPrime : PooledObject
 
 
 
-    protected void Update()
+    protected void FixedUpdate()
     {
         bulletLife--;
         if(bulletLife <= 0)
@@ -40,33 +40,33 @@ public class bulletPrime : PooledObject
         {
             case BulletType.Straight:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 break;
             }
          
             case BulletType.LCurve:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 transform.Rotate(0, 0, curveStrength);
                 break;
             }            
             
             case BulletType.RCurve:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 transform.Rotate(0, 0, -curveStrength);
                 break;
             }
             case BulletType.Speed:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 bulletSpeed += bulletSpeed * speedIncrements;
                 break;
             }
 
             case BulletType.LWave:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
@@ -74,14 +74,14 @@ public class bulletPrime : PooledObject
             
             case BulletType.RWave:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }
             case BulletType.LDoubleWave:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
@@ -89,7 +89,7 @@ public class bulletPrime : PooledObject
             
             case BulletType.RDoubleWave:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
@@ -97,7 +97,7 @@ public class bulletPrime : PooledObject
 
             default:
             {
-                transform.position += transform.up * bulletSpeed * Time.deltaTime;
+                transform.position += transform.up * bulletSpeed;
                 break;
             }
 
