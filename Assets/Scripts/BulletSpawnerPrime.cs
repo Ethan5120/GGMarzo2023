@@ -55,7 +55,9 @@ public class BulletSpawnerPrime : MonoBehaviour
             var bullet = (bulletPrime)colorBullet[stream.colorType].Get();
             bullet.transform.position = stream.spawnPoint.transform.position;
             bullet.transform.rotation = stream.spawnPoint.transform.rotation;
-            bullet.GetComponent<bulletPrime>().ChooseType(4);
+            bullet.GetComponent<bulletPrime>().bulletLife = 5000;
+            bullet.GetComponent<bulletPrime>().bulletSpeed = 1;
+            bullet.GetComponent<bulletPrime>().ChooseType(0);
             stream.shootCool = stream.shootDelay;
             stream.spawnPoint.transform.Rotate(new Vector3(0, 0, stream.angleIncrease));
         }

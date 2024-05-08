@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2110722937837661565}
   - component: {fileID: 2110722937837661564}
-  - component: {fileID: 9174157245831443594}
   - component: {fileID: 5972313481418417528}
   - component: {fileID: 8081747083301906928}
+  - component: {fileID: 9174157245831443594}
   m_Layer: 7
   m_Name: Bullet3
   m_TagString: Untagged
@@ -87,28 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9174157245831443594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110722937837661566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc36dcdd8b9059447991657ffaf598a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool: {fileID: 0}
-  type: 0
-  bulletSpeed: 1
-  curveStrength: 1
-  speedIncrements: 0
-  waveStrength: 5
-  waveSpeed: 180
-  waveFreq: 0.2
-  waveAmp: 1
-  bType: 2
 --- !u!50 &5972313481418417528
 Rigidbody2D:
   serializedVersion: 4
@@ -171,3 +149,26 @@ CircleCollider2D:
   m_Offset: {x: 0.00000047683716, y: 0}
   serializedVersion: 2
   m_Radius: 0.44331026
+--- !u!114 &9174157245831443594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110722937837661566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc36dcdd8b9059447991657ffaf598a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool: {fileID: 0}
+  type: 0
+  bulletSpeed: 1
+  curveStrength: 1
+  speedIncrements: 0.01
+  waveStrength: 0.1
+  waveSpeed: 180
+  waveFreq: 0.2
+  waveAmp: 0.2
+  bulletLife: 0
+  bType: 2

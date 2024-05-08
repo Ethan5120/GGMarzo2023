@@ -59,7 +59,7 @@ public class testBullet : MonoBehaviour
             case BulletType.LWave:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(-Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp * Time.deltaTime;
                 waveSpeed += waveStrength;
                 break;
             }            
@@ -67,14 +67,14 @@ public class testBullet : MonoBehaviour
             case BulletType.RWave:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }
             case BulletType.LDoubleWave:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(-Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }            
@@ -82,7 +82,7 @@ public class testBullet : MonoBehaviour
             case BulletType.RDoubleWave:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }

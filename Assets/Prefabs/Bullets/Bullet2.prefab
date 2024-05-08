@@ -165,9 +165,10 @@ MonoBehaviour:
   type: 0
   bulletSpeed: 1
   curveStrength: 1
-  speedIncrements: 0
+  speedIncrements: 0.01
   waveStrength: 0.1
   waveSpeed: 180
   waveFreq: 0.2
-  waveAmp: 0.5
+  waveAmp: 0.2
+  bulletLife: 0
   bType: 1

@@ -25,9 +25,17 @@ public class bulletPrime : PooledObject
     protected float damage = 1;
 
 
+    public float bulletLife;
+
+
 
     protected void Update()
     {
+        bulletLife--;
+        if(bulletLife <= 0)
+        {
+            Release();
+        }
        switch (type)
         {
             case BulletType.Straight:
@@ -52,41 +60,37 @@ public class bulletPrime : PooledObject
             case BulletType.Speed:
             {
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                bulletSpeed += speedIncrements;
+                bulletSpeed += bulletSpeed * speedIncrements;
                 break;
             }
 
             case BulletType.LWave:
             {
-                waveSpeed = 180;
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(-Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }            
             
             case BulletType.RWave:
             {
-                waveSpeed = 180;
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }
             case BulletType.LDoubleWave:
             {
-                waveSpeed = 1;
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(-Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }            
             
             case BulletType.RDoubleWave:
             {
-                waveSpeed = 1;
                 transform.position += transform.up * bulletSpeed * Time.deltaTime;
-                transform.position += new Vector3(Mathf.Sin(waveSpeed * waveFreq) * waveAmp,0,0);
+                transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }
