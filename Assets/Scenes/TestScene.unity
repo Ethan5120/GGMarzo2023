@@ -1979,7 +1979,7 @@ MonoBehaviour:
   - {fileID: 1362556244}
   - {fileID: 1736302678}
   - {fileID: 1592349172}
-  willFire: 1
+  willFire: 0
 --- !u!1 &754489172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,7 +2837,7 @@ Tilemap:
       - {fileID: -1373656142, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: 412156597, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: -1352917006, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -11, y: -5, z: 0}
@@ -2997,7 +2997,7 @@ Tilemap:
       - {fileID: -1373656142, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: 412156597, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: -1352917006, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -11, y: 0, z: 0}
@@ -3397,7 +3397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1001379734
 Transform:
   m_ObjectHideFlags: 0
@@ -3922,7 +3922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d2178aa0408bf48962548900ffd061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitSize: 100
+  InitSize: 2000
   pObject: {fileID: 4484392339581892595, guid: 4c797e20e8e5110439ecd2e91e43c4fb, type: 3}
   ObjectContainer: {fileID: 1362556242}
 --- !u!1 &1592349170
@@ -3969,7 +3969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d109ae8f17b740a5d33c3ba3a8338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitSize: 100
+  InitSize: 2000
   pObject: {fileID: 9174157245831443594, guid: 52e77ad6ec6cfd94c81934545fc32c2a, type: 3}
   ObjectContainer: {fileID: 1592349170}
 --- !u!1 &1617389408
@@ -4079,6 +4079,7 @@ MonoBehaviour:
   maxRange: 0
   timeToMove: 2
   isDying: 1
+  finalMove: 0
 --- !u!1 &1736302676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4123,7 +4124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b4fa615bc13e04f8467fe1cc43139f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitSize: 100
+  InitSize: 2000
   pObject: {fileID: 214526184221073088, guid: c8b914deff2a52b4d8f18d9621629d03, type: 3}
   ObjectContainer: {fileID: 1736302676}
 --- !u!1 &1809167088

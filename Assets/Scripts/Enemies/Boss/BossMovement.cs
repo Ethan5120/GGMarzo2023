@@ -12,6 +12,7 @@ public class BossMovement : MonoBehaviour
     bool hasReached = false;
 
     public bool isDying = false;
+    public bool finalMove = false;
     private Vector3 velocity = Vector3.zero;
 
     void Start()
@@ -34,7 +35,7 @@ public class BossMovement : MonoBehaviour
             }
 
         }
-        else
+        else if(!finalMove)
         {
             FinalMove();
         }
@@ -72,5 +73,9 @@ public class BossMovement : MonoBehaviour
     void FinalMove()
     {
         transform.position = Vector3.SmoothDamp(transform.position, lastStop.transform.position,ref velocity, timeToMove);
+        if(Vector3.Distance(transform.position, lastStop.transform.position) <= 0.01)
+        {
+            finalMove = true;
+        }
     }
 }
