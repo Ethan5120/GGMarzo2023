@@ -75,7 +75,7 @@ public class bulletPrime : PooledObject
             case BulletType.RWave:
             {
                 transform.position += transform.up * bulletSpeed;
-                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
+                transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
                 waveSpeed += waveStrength;
                 break;
             }
