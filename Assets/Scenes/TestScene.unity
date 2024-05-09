@@ -454,63 +454,63 @@ MonoBehaviour:
   Streams:
   - spawnPoint: {fileID: 1991941766}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 0}
     colorType: 0
     bulletType: 0
   - spawnPoint: {fileID: 754489172}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 40}
     colorType: 0
     bulletType: 0
   - spawnPoint: {fileID: 1252929384}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 80}
     colorType: 0
     bulletType: 0
   - spawnPoint: {fileID: 627363186}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 120}
     colorType: 1
     bulletType: 0
   - spawnPoint: {fileID: 1939736563}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 160}
     colorType: 1
     bulletType: 0
   - spawnPoint: {fileID: 208905577}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 200}
     colorType: 1
     bulletType: 0
   - spawnPoint: {fileID: 932046437}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 240}
     colorType: 2
     bulletType: 0
   - spawnPoint: {fileID: 1888367364}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 280}
     colorType: 2
     bulletType: 0
   - spawnPoint: {fileID: 638750176}
     shootCool: 0
-    shootDelay: 1
+    shootDelay: 2
     angleIncrease: 6
     rotationStartPoint: {x: 0, y: 0, z: 320}
     colorType: 2
@@ -2021,13 +2021,14 @@ GameObject:
   m_Component:
   - component: {fileID: 782733610}
   - component: {fileID: 782733609}
+  - component: {fileID: 782733611}
   m_Layer: 0
   m_Name: Malware_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &782733609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2095,6 +2096,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &782733611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782733608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f92cc474621c2e4cae3ce5c7b014d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minY: 0
+  maxY: 0
+  minX: 0
+  maxX: 0
+  playerHP: {fileID: 0}
+  maxHP: 20
+  score: {fileID: 0}
+  pState: 3
+  playerBullets: {fileID: 0}
+  fireRate: 0
+  aimAngle: 0
+  angleIncrease: 0
+  streamsAmount: 0
+  shootSFX: {fileID: 0}
+  bombAmount: {fileID: 0}
+  bFlash: {fileID: 0}
+  bullCool: {fileID: 0}
+  bombSFX: {fileID: 0}
+  healthBar: {fileID: 0}
+  pauseSFX: {fileID: 0}
 --- !u!1 &789114600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,7 +2822,7 @@ Tilemap:
       - {fileID: -1373656142, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: 412156597, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: -1352917006, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 10, y: -7, z: 0}
@@ -2837,7 +2870,7 @@ Tilemap:
       - {fileID: -1373656142, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: 412156597, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: -1352917006, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -11, y: -5, z: 0}
@@ -3093,7 +3126,7 @@ Tilemap:
       - {fileID: -1373656142, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: 412156597, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
       - {fileID: -1352917006, guid: 61b8a9e1642e9cc4b820fe57b7eeb87c, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -11, y: 3, z: 0}
