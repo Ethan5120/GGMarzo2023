@@ -6,18 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/OldVersion/OldScenes/Kike.unity
-    guid: 04d3e57c83f2e354cb1a222087ada7f2
+    path: Assets/Scenes/MainMenu.unity
+    guid: 8f2015e43b129384fa5d0ad301c3bdd2
   - enabled: 1
-    path: Assets/OldVersion/OldScenes/Ethan.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/OldVersion/OldScenes/Derrota.unity
-    guid: a75ecd5f39f32414b8bd02db6f033800
-  - enabled: 1
-    path: Assets/OldVersion/OldScenes/Rata gorda rapera.unity
-    guid: 88cd0f4e4da279a4190afcf47dd4cbba
-  - enabled: 1
-    path: Assets/OldVersion/OldScenes/pausa.unity
-    guid: daa5519ddd83479428aa5d0f3fe7dbba
+    path: Assets/Scenes/LevelOne.unity
+    guid: e06d76aa5d740164c9e2378cb066d910
   m_configObjects: {}
