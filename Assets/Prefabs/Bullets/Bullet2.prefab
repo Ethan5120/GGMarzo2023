@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 1697058181
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3fa42bdcdb3b9a46ab143d1fd2f17b0, type: 3}
-  m_Color: {r: 0.066497326, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: afea3899dcb504146a81995b414506b9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.00000047683716}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.44098616
+  m_Radius: 0.1093725
 --- !u!50 &2662977095198996833
 Rigidbody2D:
   serializedVersion: 4
@@ -162,13 +162,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
-  type: 0
-  bulletSpeed: 1
+  type: 4
+  bulletSpeed: 0.07
   curveStrength: 1
   speedIncrements: 0.01
   waveStrength: 0.1
   waveSpeed: 180
-  waveFreq: 0.2
-  waveAmp: 0.2
+  waveFreq: 1
+  waveAmp: 0.05
   bulletLife: 0
   bType: 1

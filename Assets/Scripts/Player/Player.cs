@@ -11,14 +11,12 @@ public class Player : MonoBehaviour
     [SerializeField] float minY, maxY;
     [SerializeField] float minX, maxX;
 
+    public enum PolarityState { RED, BLUE, YELLOW, NORMAL }; //OnE = Red; Two = Blue; Three = Red
+    [Space(5)]
 
     [Header("Player Data")]
-    [SerializeField] floatVariable playerHP;
-    [SerializeField] float maxHP = 20;
-    [SerializeField] floatVariable score;
-    public enum PolarityState { RED, BLUE, YELLOW, NORMAL }; //OnE = Red; Two = Blue; Three = Red
     public PolarityState pState = PolarityState.NORMAL;
-
+    [Space(5)]
 
     [Header("AttackData")]
     [SerializeField] ObjectPool playerBullets;
@@ -42,10 +40,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         bFlash.SetActive(false);
-        playerHP.floatValue = maxHP;
+        //playerHP.floatValue = maxHP;
         bombAmount.intValue = 3;
         anim = GetComponent<Animator>();
-        healthBar.SetMaxHealth(maxHP);
+        //healthBar.SetMaxHealth(maxHP);
     }
 
     
@@ -150,11 +148,11 @@ public class Player : MonoBehaviour
                 {
                     if (pState != PolarityState.RED)
                     {
-                        TakeDamage(damageToDeal);
+                        //TakeDamage(damageToDeal);
                     }
                     else
                     {
-                        score.floatValue += 10;
+                        //score.floatValue += 10;
                     }
                     break;
                 }
@@ -163,11 +161,11 @@ public class Player : MonoBehaviour
                 {
                     if (pState != PolarityState.BLUE)
                     {
-                        TakeDamage(damageToDeal);
+                        //TakeDamage(damageToDeal);
                     }
                     else
                     {
-                        score.floatValue += 10;
+                        //score.floatValue += 10;
                     }
                     break;
                 }
@@ -176,11 +174,11 @@ public class Player : MonoBehaviour
                 {
                     if (pState != PolarityState.YELLOW)
                     {
-                        TakeDamage(damageToDeal);
+                       //TakeDamage(damageToDeal);
                     }
                     else
                     {
-                        score.floatValue += 10;
+                        //score.floatValue += 10;
                     }
                     break;
                 }
@@ -215,7 +213,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Heal()
+    /*public void Heal()
     {
         if(playerHP.floatValue < 25)
         {
@@ -233,5 +231,5 @@ public class Player : MonoBehaviour
     {
         playerHP.floatValue -= damageAmount;
         healthBar.SetHealth(playerHP.floatValue);
-    }
+    }*/
 }

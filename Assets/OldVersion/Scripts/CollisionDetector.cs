@@ -8,7 +8,7 @@ public class CollisionDetector : PooledObject
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player playerComponent))
         {
-            playerComponent.Heal();
+            //playerComponent.Heal();
             Destroy(this.gameObject);
         }
 
