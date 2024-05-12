@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class BulletSpawnerPrime : MonoBehaviour
@@ -18,15 +17,15 @@ public class BulletSpawnerPrime : MonoBehaviour
     }
 
     public List<BulletSpawner> Streams = new List<BulletSpawner>();
-    float ammountStreams;
+    protected float ammountStreams;
     public List<BulletPool> colorBullet = new List<BulletPool>();
     public bool willFire = false;
 
     [Header("GameManager")]
-    [SerializeField] GameManagerSO GM;
+    [SerializeField] protected GameManagerSO GM;
 
 
-    void Awake()
+    virtual protected void Awake()
     {
         //Check Ammount of Streams
         ammountStreams = Streams.Count;
@@ -36,7 +35,7 @@ public class BulletSpawnerPrime : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    virtual protected void FixedUpdate()
     {
         if(willFire)
         {
@@ -48,7 +47,7 @@ public class BulletSpawnerPrime : MonoBehaviour
     }
 
 
-    void ShootPattern(BulletSpawner stream, int bType)
+    virtual protected void ShootPattern(BulletSpawner stream, int bType)
     {
         if(stream.shootCool <= 0)
         {

@@ -9,13 +9,11 @@ public class EnemyMovement : MonoBehaviour
 
 
     public List<GameObject> travelPoints = new List<GameObject>();
-    public GameObject lastStop;
     public int currentTarget, newTarget;
     public int maxRange = 0;
     public float timeToMove = 5;
     bool hasReached = false;
-
-    public bool isDying = false;
+    public bool reachedFirst = false;
     private Vector3 velocity = Vector3.zero;
 
     void Start()
@@ -23,21 +21,19 @@ public class EnemyMovement : MonoBehaviour
         maxRange = travelPoints.Count;
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        if(!isDying)
-        {
-            if(!hasReached && !GM.isPause)
-            {
-                MoveTarget();
-            }
-            else
-            {
-                SelectTarget();
-            }
 
+        if(!hasReached && !GM.isPause)
+        {
+            MoveTarget();
         }
+        else
+        {
+            SelectTarget();
+        }
+
         
     }
 
@@ -67,6 +63,10 @@ public class EnemyMovement : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, travelPoints[currentTarget].transform.position,ref velocity, timeToMove);
         if(Vector3.Distance(transform.position, travelPoints[currentTarget].transform.position) <= 0.01)
         {
+            if(!reachedFirst)
+            {
+                reachedFirst = true;
+            }
             hasReached = true;
         }
     }

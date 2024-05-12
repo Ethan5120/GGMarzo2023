@@ -10,23 +10,25 @@ public class EnemyBehaviour : PooledObject, IProduct
 
     [SerializeField] float MaxHP;
     [SerializeField] float HP;
-    //Aqui referenciamos el script de mov
+    [SerializeField] EnemyMovement enemyMove;
     [SerializeField] BulletSpawnerPrime bulletSpawn;
     AudioSource deadSound;
 
 
     public void Iniciar()
     {
-        //Aqui randomizamos su objetivo a moverse
+        enemyMove = GetComponent<EnemyMovement>();
         bulletSpawn = GetComponent<BulletSpawnerPrime>();
         HP = MaxHP;
         bulletSpawn.willFire = false;
+        enemyMove.currentTarget = Random.Range(0, enemyMove.maxRange);
+        enemyMove.reachedFirst = false;
     }
 
 
     void Update()
     {
-        if(!bulletSpawn.willFire)
+        if(!bulletSpawn.willFire && enemyMove.reachedFirst)
         {
             bulletSpawn.willFire = true;
         }
