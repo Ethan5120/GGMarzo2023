@@ -16,10 +16,10 @@ MonoBehaviour:
   isPause: 1
   cGState: 0
   cStageState: 0
-  playerHealth: -17
+  playerHealth: -182
   playerMaxHP: 10
-  bombCharges: 19
-  bulletCool: -0.0010342338
+  bombCharges: 10
+  bulletCool: -0.0035022898
   gameMusic: []
-  currentScore: 411
-  currentHiScore: 411
+  currentScore: 14
+  currentHiScore: 414
