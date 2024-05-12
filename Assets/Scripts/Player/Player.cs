@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
         //Debug.Log(mousePos);
         float posYlimited = Mathf.Clamp(mousePos.y, minY, maxY);
         float posXlimited = Mathf.Clamp(mousePos.x, minX, maxX);
+        
         if(!GM.isPause)
         {
             transform.position = new Vector3(posXlimited, posYlimited, 0);

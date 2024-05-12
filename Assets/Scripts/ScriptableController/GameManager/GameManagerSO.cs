@@ -23,9 +23,6 @@ public class GameManagerSO : ScriptableObject
     [Space(5)]
 
 
-    [Header("AudioData")]
-    public AudioSource[] gameMusic;
-    [Space(5)]
 
     [Header("ScoreData")]
     public float currentScore;

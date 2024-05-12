@@ -5,6 +5,9 @@ using UnityEngine;
 public class WaveSpawnerV5 : MonoBehaviour
 {
 public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    [Header("GameManager")]
+    [SerializeField] GameManagerSO GM;
+
     [System.Serializable]
     public class Wave
     {
@@ -12,9 +15,13 @@ public enum SpawnState { SPAWNING, WAITING, COUNTING };
         public List<EnemyWaveList> Waves = new List<EnemyWaveList>();
         public float delay;
     }
+
+    public List<EnemyPool> enemyTypes = new List<EnemyPool>();
+
     public List<Wave> waves = new List<Wave>();
     public List<int> Seed = new List<int>();
-    private int nextWave = 0;
+    int seedVal = 0;
+    [SerializeField] int nextWave = 0;
 
     public Transform[] spawnPoints;
 
@@ -48,31 +55,35 @@ public enum SpawnState { SPAWNING, WAITING, COUNTING };
     }
     void Update()
     {
-
-        if (state == SpawnState.WAITING)
+        if(GM.cStageState == GameManagerSO.StageState.EnemiesStage)
         {
-            if (!EnemyIsAlive() && wavesCompleted == false)
+            if (state == SpawnState.WAITING)
             {
-                WaveCompleted();
+                if (!EnemyIsAlive() && wavesCompleted == false)
+                {
+                    WaveCompleted();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+
+            if (waveCountdown <= 0)
+            {
+                if (state != SpawnState.SPAWNING)
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
+                }
             }
             else
             {
-                return;
+                waveCountdown -= Time.deltaTime * GM.gameTime;
             }
         }
 
-
-        if (waveCountdown <= 0)
-        {
-            if (state != SpawnState.SPAWNING)
-            {
-                StartCoroutine(SpawnWave(waves[nextWave]));
-            }
-        }
-        else
-        {
-            waveCountdown -= Time.deltaTime;
-        }
+        
     }
 
 
@@ -84,26 +95,30 @@ public enum SpawnState { SPAWNING, WAITING, COUNTING };
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
-        if (nextWave + 1 > waves.Count - 1 && wavesCompleted == false)
+        if(GM.cStageState == GameManagerSO.StageState.EnemiesStage)
         {
-            Debug.Log("ALL WAVES COMPLETE!");
-            wavesCompleted = true;
-
-        }
-        else
-        {
-            nextWave++;
+            if (nextWave + 1 > waves.Count - 1 && wavesCompleted == false)
+            {
+                Debug.Log("ALL WAVES COMPLETE!");
+                wavesCompleted = true;
+                GM.cStageState = GameManagerSO.StageState.BossStage;
+            }
+            else
+            {
+                nextWave++;
+                seedVal++;
+            }
         }
 
     }
     bool EnemyIsAlive()
     {
-        searchCountdown -= Time.deltaTime;
+        searchCountdown -= Time.deltaTime * GM.gameTime;
 
         if (searchCountdown <= 0f)
         {
             searchCountdown = 1f;
-            if (GameObject.FindObjectOfType<EnemyParent>() == null)
+            if (GameObject.FindObjectOfType<EnemyBehaviour>() == null)
             {
                 return false;
             }
@@ -119,9 +134,9 @@ public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
 
 
-        for (int i = 0; i < _wave.Waves[0].enemyList.Count; i++)
+        for (int i = 0; i < _wave.Waves[Seed[seedVal]].enemyTypeList.Count; i++)
         {
-            //spawnEnemy(_wave.enemy[Random.Range(0, _wave.enemy.Length)]);
+            spawnEnemy(enemyTypes[_wave.Waves[Seed[seedVal]].enemyTypeList[i]]);
             //spawnEnemy(_wave.enemy);
             yield return new WaitForSeconds(1f / _wave.delay);
         }
@@ -132,7 +147,7 @@ public enum SpawnState { SPAWNING, WAITING, COUNTING };
         yield break;
     }
 
-    void spawnEnemy(EnemyFactory _enemy)
+    void spawnEnemy(EnemyPool _enemy)
     {
         if(wavesCompleted == false)
         {
@@ -140,7 +155,9 @@ public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
             Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            EnemyParent thisenemy = (EnemyParent)_enemy.GetProduct(new Vector2(_sp.position.x, _sp.position.y));
+            EnemyBehaviour thisenemy = (EnemyBehaviour)_enemy.Get();
+            thisenemy.transform.position = _sp.position;
+            thisenemy.Iniciar();
 
         }
     }
