@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameManagerController
   m_EditorClassIdentifier: 
   gameTime: 0
-  isPause: 1
+  isPause: 0
   cGState: 0
   cStageState: 0
   playerHealth: -182
