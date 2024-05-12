@@ -32,7 +32,11 @@ public class BossBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(bossMovement.reachedFirst && !bossMovement.isDying)
+        {
+            normalSpawners[0].willFire = true;
+        }
         bossThreshold = (BossCurrentHP * 10) / BossMaxHP;
         if (bossThreshold <= 8f && !BossArms[0].activeSelf)
         {
@@ -59,6 +63,14 @@ public class BossBehaviour : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        BossCurrentHP -= damage;
+        if(bossMovement.reachedFirst)
+        {
+            BossCurrentHP -= damage;
+            if (BossCurrentHP < 0)
+            {
+                GM.cStageState = GameManagerSO.StageState.WinStage;
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

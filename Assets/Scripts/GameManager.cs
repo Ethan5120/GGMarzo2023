@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     [Header("BombState")]
     [SerializeField] Image[] bChargesDisplay;
 
-
+    [Header("AudioData")]
+    public AudioSource[] gameMusic;
+    [Space(5)]
 
     [Header("ScoreSettings")]
     [SerializeField] TextMeshProUGUI Score, HiScore;
@@ -18,10 +20,13 @@ public class GameManager : MonoBehaviour
     [Header("Boss")]
     [SerializeField] GameObject Boss;
 
+    GameManagerSO.StageState currentState;
+
     void Start()
     {
         GM.currentScore = 0;
         GM.currentHiScore = PlayerPrefs.GetFloat("Hi-Score");
+        gameMusic[1].Play();
 
         if (GM.currentHiScore < 999999)
         {
@@ -36,28 +41,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        switch(GM.cStageState)
-        {
-            case GameManagerSO.StageState.TutorialStage:
-            {
-
-                break;
-            }
-
-            case GameManagerSO.StageState.EnemiesStage:
-            {
-
-                break;
-            }
-
-            case GameManagerSO.StageState.BossStage:
-            {
-                GM.gameMusic[0].Stop();
-                GM.gameMusic[1].Play();
-                Boss.SetActive(true);
-                break;
-            }
-        }
+        ChangeSong();
 
         if (GM.playerHealth <= 0)
         {
@@ -90,4 +74,42 @@ public class GameManager : MonoBehaviour
         }
         //Activate RResults Panel
     }
+
+    void ChangeSong()
+    {
+        if(GM.cStageState != currentState)
+        {
+            switch(GM.cStageState)
+            {
+                case GameManagerSO.StageState.TutorialStage:
+                {
+                    currentState = GM.cStageState;
+                    gameMusic[1].Stop();
+                    gameMusic[2].Stop();
+                    gameMusic[0].Play();
+                    break;
+                }
+
+                case GameManagerSO.StageState.EnemiesStage:
+                {
+                    currentState = GM.cStageState;
+                    gameMusic[0].Stop();
+                    gameMusic[2].Stop();
+                    gameMusic[1].Play();
+                    break;
+                }
+
+                case GameManagerSO.StageState.BossStage:
+                {
+                    currentState = GM.cStageState;
+                    gameMusic[0].Stop();
+                    gameMusic[1].Stop();
+                    gameMusic[2].Play();
+                    Boss.SetActive(true);
+                    break;
+                }
+            }
+        }
+    }
+
 }

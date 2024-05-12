@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : PooledObject, IProduct
+public class EnemyBehaviour : PooledObject
 {
     [Header("GameManager")]
     [SerializeField] GameManagerSO GM;
@@ -47,18 +47,21 @@ public class EnemyBehaviour : PooledObject, IProduct
 
     public void TakeDamage(float damageAmount)
     {
-        HP -= damageAmount;
-
-        if (HP <= 0)
+        if(enemyMove.reachedFirst)
         {
-            Die();
+            HP -= damageAmount;
+
+            if (HP <= 0)
+            {
+                Die();
+            }
         }
     }
 
     protected void Die()
     {
         GM.currentScore += 50;
-        deadSound.Play();
+        deadSound?.Play();
         Release();
     }
 }

@@ -6,7 +6,7 @@ public class bulletPlayer : bulletPrime
 {
     override protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyParent>(out EnemyParent enemyComponent))
+        if (collision.gameObject.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemyComponent))
         {
             enemyComponent.TakeDamage(damage);
             Release();
