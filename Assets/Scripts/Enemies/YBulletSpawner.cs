@@ -1,32 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletSpawnerPrime : MonoBehaviour
+public class YBulletSpawner : BulletSpawnerPrime
 {
-    [System.Serializable]
-    public class BulletSpawner
+    public BulletPool colBullet;
+    [SerializeField] GameObject centralRotation;
+    [SerializeField] float rotateValue;
+
+
+    override protected void Awake()
     {
-        public GameObject spawnPoint;
-        public float shootCool;
-        public float shootDelay;
-        public float angleIncrease;
-        public Vector3 rotationStartPoint;
-        public int colorType;
-        public int bulletType;
-    }
+        colBullet = GameObject.FindObjectOfType<Bullet3Pool>();
 
-    public List<BulletSpawner> Streams = new List<BulletSpawner>();
-    protected float ammountStreams;
-    public List<BulletPool> colorBullet = new List<BulletPool>();
-    public bool willFire = false;
-
-    [Header("GameManager")]
-    [SerializeField] protected GameManagerSO GM;
-
-
-    virtual protected void Awake()
-    {
         //Check Ammount of Streams
         ammountStreams = Streams.Count;
         for(int i = 0; i < ammountStreams; i++)
@@ -35,7 +22,7 @@ public class BulletSpawnerPrime : MonoBehaviour
         }
     }
 
-    virtual protected void FixedUpdate()
+    override protected void FixedUpdate()
     {
         if(willFire && !GM.isPause)
         {
@@ -43,19 +30,19 @@ public class BulletSpawnerPrime : MonoBehaviour
             {
                 ShootPattern(Streams[i], Streams[i].bulletType);
             }
+            centralRotation.transform.Rotate(new Vector3(0,0, rotateValue));
         }
     }
 
-
-    virtual protected void ShootPattern(BulletSpawner stream, int bType)
+    override protected void ShootPattern(BulletSpawner stream, int bType)
     {
         if(stream.shootCool <= 0)
         {
-            var bullet = (bulletPrime)colorBullet[stream.colorType].Get();
+            var bullet = (bulletPrime)colBullet.Get();
             bullet.transform.position = stream.spawnPoint.transform.position;
             bullet.transform.rotation = stream.spawnPoint.transform.rotation;
-            bullet.GetComponent<bulletPrime>().bulletLife = 500;
-            bullet.GetComponent<bulletPrime>().bulletSpeed = 0.02f;
+            bullet.GetComponent<bulletPrime>().bulletLife = 1000;
+            bullet.GetComponent<bulletPrime>().bulletSpeed = 0.05f;
             bullet.GetComponent<bulletPrime>().ChooseType(bType);
             stream.shootCool = stream.shootDelay;
             stream.spawnPoint.transform.Rotate(new Vector3(0, 0, stream.angleIncrease));
