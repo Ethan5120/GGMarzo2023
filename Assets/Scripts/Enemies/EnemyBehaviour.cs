@@ -14,7 +14,16 @@ public class EnemyBehaviour : PooledObject, IProduct
     [SerializeField] BulletSpawnerPrime bulletSpawn;
     AudioSource deadSound;
 
-
+    //DeleteThisLater
+    void Awake()
+    {
+        enemyMove = GetComponent<EnemyMovement>();
+        bulletSpawn = GetComponent<BulletSpawnerPrime>();
+        HP = MaxHP;
+        bulletSpawn.willFire = false;
+        enemyMove.currentTarget = Random.Range(0, enemyMove.maxRange);
+        enemyMove.reachedFirst = false;
+    }
     public void Iniciar()
     {
         enemyMove = GetComponent<EnemyMovement>();

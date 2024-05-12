@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7067448926004241525}
   - component: {fileID: 3150823901720573305}
   - component: {fileID: 4397235594070805875}
+  - component: {fileID: 8037591070913878866}
   m_Layer: 8
   m_Name: REnemy
   m_TagString: Untagged
@@ -312,18 +313,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 11400000, guid: f028946c20c26204b99a5341cc149503, type: 2}
   travelPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {x: -2, y: 4, z: 0}
+  - {x: 2, y: 4, z: 0}
+  - {x: -3, y: 2, z: 0}
+  - {x: 0, y: 2, z: 0}
+  - {x: 3, y: 2, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
   currentTarget: 0
   newTarget: 0
   maxRange: 0
-  timeToMove: 5
+  timeToMove: 1
   reachedFirst: 0
+--- !u!114 &8037591070913878866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975507153089925207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8e696594213654a8b969273f45bf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Streams:
+  - spawnPoint: {fileID: 5646385070208266049}
+    shootCool: 0
+    shootDelay: 10
+    angleIncrease: 0
+    rotationStartPoint: {x: 0, y: 0, z: 180}
+    colorType: 0
+    bulletType: 0
+  colorBullet: []
+  willFire: 0
+  GM: {fileID: 11400000, guid: f028946c20c26204b99a5341cc149503, type: 2}
+  colBullet: {fileID: 0}
 --- !u!1 &5646385070208266049
 GameObject:
   m_ObjectHideFlags: 0

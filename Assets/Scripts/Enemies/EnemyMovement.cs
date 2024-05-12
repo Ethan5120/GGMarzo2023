@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameManagerSO GM;
 
 
-    public List<GameObject> travelPoints = new List<GameObject>();
+    public List<Vector3> travelPoints = new List<Vector3>();
     public int currentTarget, newTarget;
     public int maxRange = 0;
     public float timeToMove = 5;
@@ -60,8 +60,8 @@ public class EnemyMovement : MonoBehaviour
 
     void  MoveTarget()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, travelPoints[currentTarget].transform.position,ref velocity, timeToMove);
-        if(Vector3.Distance(transform.position, travelPoints[currentTarget].transform.position) <= 0.01)
+        transform.position = Vector3.SmoothDamp(transform.position, travelPoints[currentTarget],ref velocity, timeToMove);
+        if(Vector3.Distance(transform.position, travelPoints[currentTarget]) <= 0.01)
         {
             if(!reachedFirst)
             {

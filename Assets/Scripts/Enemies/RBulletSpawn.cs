@@ -26,8 +26,8 @@ public class RBulletSpawn : BulletSpawnerPrime
             var bullet = (bulletPrime)colBullet.Get();
             bullet.transform.position = stream.spawnPoint.transform.position;
             bullet.transform.rotation = stream.spawnPoint.transform.rotation;
-            bullet.GetComponent<bulletPrime>().bulletLife = 500;
-            bullet.GetComponent<bulletPrime>().bulletSpeed = 0.02f;
+            bullet.GetComponent<bulletPrime>().bulletLife = 1000;
+            bullet.GetComponent<bulletPrime>().bulletSpeed = 0.05f;
             bullet.GetComponent<bulletPrime>().ChooseType(bType);
             stream.shootCool = stream.shootDelay;
             stream.spawnPoint.transform.Rotate(new Vector3(0, 0, stream.angleIncrease));
