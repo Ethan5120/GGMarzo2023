@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d7cd91ac975214791328604e1ef782, type: 3}
   m_Name: GameManagerController
   m_EditorClassIdentifier: 
-  gameTime: 0
+  gameTime: 1
   isPause: 0
   cGState: 0
   cStageState: 0
