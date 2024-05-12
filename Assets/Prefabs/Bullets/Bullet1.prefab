@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
   type: 4
+  GM: {fileID: 11400000, guid: f028946c20c26204b99a5341cc149503, type: 2}
   bulletSpeed: 0.03
   curveStrength: 2
   speedIncrements: 0.01

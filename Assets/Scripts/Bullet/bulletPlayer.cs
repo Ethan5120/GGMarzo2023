@@ -11,7 +11,7 @@ public class bulletPlayer : bulletPrime
             enemyComponent.TakeDamage(damage);
             Release();
         }
-        if(collision.gameObject.TryGetComponent<BossController>(out BossController bossComponent))
+        if(collision.gameObject.TryGetComponent<BossBehaviour>(out BossBehaviour bossComponent))
         {
             bossComponent.TakeDamage(damage);
             Release();

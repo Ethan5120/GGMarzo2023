@@ -26,10 +26,7 @@ public class TestColorSwap : MonoBehaviour
     {
         currentSprite.color = currentColor;
 
-        if(!isChanging)
-        {
-            colorNumber = Random.Range(0, 4);
-        }
+
         switch (colorNumber)
         {
             case 0:

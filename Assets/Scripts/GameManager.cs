@@ -7,117 +7,90 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("GameStateChecks")]
-    [SerializeField] boolVariable isWavesCompleted;
-    [SerializeField] boolVariable bossDead;
-    [SerializeField] AudioSource[] gameMusic;
-
-    [Header("PlayerState")]
-    [SerializeField] floatVariable playerHealth;
+    [Header("GameManager")]
+    [SerializeField] GameManagerSO GM;
 
     [Header("BombState")]
-    [SerializeField] intVariable bCharges;
     [SerializeField] Image[] bChargesDisplay;
-    [SerializeField] Sprite[] bChargesSprites;
 
-    [Header("BossCheck")]
-    [SerializeField] BossFactory bossFactory;
+
 
     [Header("ScoreSettings")]
-    [SerializeField] floatVariable playerScore;
-    [SerializeField] floatVariable playerHScore;
     [SerializeField] TextMeshProUGUI Score, HiScore;
 
-    bool HasBossSpawned = false;
+    [Header("Boss")]
+    [SerializeField] GameObject Boss;
+
     void Start()
     {
-        HasBossSpawned = false;
-        playerScore.floatValue = 0;
-        playerHScore.floatValue = PlayerPrefs.GetFloat("Hi-Score");
-        bossDead.boolValue = false;
+        GM.currentScore = 0;
+        GM.currentHiScore = PlayerPrefs.GetFloat("Hi-Score");
 
-        if (playerHScore.floatValue < 999999)
+        if (GM.currentHiScore < 999999)
         {
-            HiScore.text ="HI-SCORE\n" + playerHScore.floatValue.ToString();
+            HiScore.text =GM.currentHiScore.ToString();
         }
-        else if (playerHScore.floatValue >= 999999)
+        else if (GM.currentHiScore >= 999999)
         {
-            HiScore.text = "HI-SCORE\n999999+";
+            HiScore.text = "999999+";
         }
 
     }
 
     void Update()
     {
-        if (isWavesCompleted.boolValue == true && HasBossSpawned == false)
+        switch(GM.cStageState)
         {
-            gameMusic[0].Stop();
-            gameMusic[1].Play();
-            HasBossSpawned = true;
-            BossController thisenemy = (BossController) bossFactory.GetProduct(new Vector2(0f, 6f));
+            case GameManagerSO.StageState.TutorialStage:
+            {
 
+                break;
+            }
+
+            case GameManagerSO.StageState.EnemiesStage:
+            {
+
+                break;
+            }
+
+            case GameManagerSO.StageState.BossStage:
+            {
+                GM.gameMusic[0].Stop();
+                GM.gameMusic[1].Play();
+                Boss.SetActive(true);
+                break;
+            }
         }
 
-        switch (bCharges.intValue)
+        if (GM.playerHealth <= 0)
         {
-            case 0:
-                {
-                    bChargesDisplay[bCharges.intValue].sprite = bChargesSprites[0];
-                    break;
-                }
-
-            case 1:
-                {
-                    bChargesDisplay[bCharges.intValue].sprite = bChargesSprites[0];
-                    break;
-                }
-
-            case 2:
-                {
-                    bChargesDisplay[bCharges.intValue].sprite = bChargesSprites[0];
-                    break;
-                }
+            GameEnds();
         }
-
-        if (playerHealth.floatValue <= 0)
+        else if(GM.playerHealth > 0 && GM.cStageState == GameManagerSO.StageState.WinStage)
         {
-            GameLose();
-        }
-        else if(playerHealth.floatValue > 0 && bossDead.boolValue == true)
-        {
-            GameWin();
+            GameEnds();
         }
 
 
 
-        if (playerScore.floatValue < 999999)
+        if (GM.currentScore < 999999)
         {
-            Score.text = "SCORE\n" + playerScore.floatValue.ToString();
+            Score.text = GM.currentScore.ToString();
         }
-        else if (playerScore.floatValue >= 999999)
+        else if (GM.currentScore >= 999999)
         {
-            Score.text = "SCORE\n999999+";
+            Score.text = "999999+";
         }
     }
 
 
-    void GameLose()
+    void GameEnds()
     {
-        if (playerHScore.floatValue < playerScore.floatValue)
+        if (GM.currentHiScore < GM.currentScore)
         {
-            playerHScore.floatValue = playerScore.floatValue;
-            PlayerPrefs.SetFloat("Hi-Score", playerScore.floatValue);
+            GM.currentHiScore = GM.currentScore;
+            PlayerPrefs.SetFloat("Hi-Score", GM.currentScore);
         }
-        SceneManager.LoadScene(2);
-    }
-
-    void GameWin()
-    {
-        if (playerHScore.floatValue < playerScore.floatValue)
-        {
-            playerHScore.floatValue = playerScore.floatValue;
-            PlayerPrefs.SetFloat("Hi-Score", playerScore.floatValue);
-        }
-        SceneManager.LoadScene(3);
+        //Activate RResults Panel
     }
 }

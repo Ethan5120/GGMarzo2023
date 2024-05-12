@@ -22,6 +22,9 @@ public class BulletSpawnerPrime : MonoBehaviour
     public List<BulletPool> colorBullet = new List<BulletPool>();
     public bool willFire = false;
 
+    [Header("GameManager")]
+    [SerializeField] GameManagerSO GM;
+
 
     void Awake()
     {
@@ -44,10 +47,6 @@ public class BulletSpawnerPrime : MonoBehaviour
         }
     }
 
-    void SelectColor()
-    {
-
-    }
 
     void ShootPattern(BulletSpawner stream, int bType)
     {
@@ -64,7 +63,7 @@ public class BulletSpawnerPrime : MonoBehaviour
         }
         else
         {
-            stream.shootCool--;
+            stream.shootCool -= 1 * GM.gameTime;
         }
         
     }

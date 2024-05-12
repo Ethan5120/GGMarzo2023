@@ -6,6 +6,8 @@ public class bulletPrime : PooledObject
 {
     public enum BulletType{Straight, LCurve, RCurve, Speed, LWave, RWave, LDoubleWave, RDoubleWave}
     public BulletType type;
+    [Header("GameManager")]
+    [SerializeField] GameManagerSO GM;
 
     [Header("Bullet Data:")]
     [Header("   General Bullets:")]
@@ -22,7 +24,7 @@ public class bulletPrime : PooledObject
     public float waveSpeed = 180;
     public float waveFreq = 1;
     public float waveAmp = 1;
-    protected float damage = 1;
+    protected int damage = 1;
 
 
     public float bulletLife;
@@ -31,76 +33,78 @@ public class bulletPrime : PooledObject
 
     protected void FixedUpdate()
     {
-        bulletLife--;
+        bulletLife -= 1 * GM.gameTime;
         if(bulletLife <= 0)
         {
             Release();
         }
-       switch (type)
+        if(!GM.isPause)
         {
-            case BulletType.Straight:
+            switch (type)
             {
-                transform.position += transform.up * bulletSpeed;
-                break;
-            }
-         
-            case BulletType.LCurve:
-            {
-                transform.position += transform.up * bulletSpeed;
-                transform.Rotate(0, 0, curveStrength);
-                break;
-            }            
+                case BulletType.Straight:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    break;
+                }
             
-            case BulletType.RCurve:
-            {
-                transform.position += transform.up * bulletSpeed;
-                transform.Rotate(0, 0, -curveStrength);
-                break;
-            }
-            case BulletType.Speed:
-            {
-                transform.position += transform.up * bulletSpeed;
-                bulletSpeed += bulletSpeed * speedIncrements;
-                break;
-            }
+                case BulletType.LCurve:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    transform.Rotate(0, 0, curveStrength);
+                    break;
+                }            
+                
+                case BulletType.RCurve:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    transform.Rotate(0, 0, -curveStrength);
+                    break;
+                }
+                case BulletType.Speed:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    bulletSpeed += bulletSpeed * speedIncrements;
+                    break;
+                }
 
-            case BulletType.LWave:
-            {
-                transform.position += transform.up * bulletSpeed;
-                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
-                waveSpeed += waveStrength;
-                break;
-            }            
-            
-            case BulletType.RWave:
-            {
-                transform.position += transform.up * bulletSpeed;
-                transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
-                waveSpeed += waveStrength;
-                break;
-            }
-            case BulletType.LDoubleWave:
-            {
-                transform.position += transform.up * bulletSpeed;
-                transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
-                waveSpeed += waveStrength;
-                break;
-            }            
-            
-            case BulletType.RDoubleWave:
-            {
-                transform.position += transform.up * bulletSpeed;
-                transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp;
-                waveSpeed += waveStrength;
-                break;
-            }
+                case BulletType.LWave:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp * GM.gameTime;
+                    waveSpeed += waveStrength;
+                    break;
+                }            
+                
+                case BulletType.RWave:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp * GM.gameTime;
+                    waveSpeed += waveStrength;
+                    break;
+                }
+                case BulletType.LDoubleWave:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    transform.position += -transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp * GM.gameTime;
+                    waveSpeed += waveStrength;
+                    break;
+                }            
+                
+                case BulletType.RDoubleWave:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    transform.position += transform.right * Mathf.Sin(waveSpeed * waveFreq) * waveAmp * GM.gameTime;
+                    waveSpeed += waveStrength;
+                    break;
+                }
 
-            default:
-            {
-                transform.position += transform.up * bulletSpeed;
-                break;
+                default:
+                {
+                    transform.position += transform.up * bulletSpeed * GM.gameTime;
+                    break;
+                }
             }
-
         }
     }
     

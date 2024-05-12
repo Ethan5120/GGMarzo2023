@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
+    [Header("GameManager")]
+    [SerializeField] GameManagerSO GM;
+
+
     public List<GameObject> travelPoints = new List<GameObject>();
     public GameObject lastStop;
     public int currentTarget, newTarget;
@@ -25,7 +29,7 @@ public class BossMovement : MonoBehaviour
     {
         if(!isDying)
         {
-            if(!hasReached)
+            if(!hasReached && !GM.isPause)
             {
                 MoveTarget();
             }
@@ -35,7 +39,7 @@ public class BossMovement : MonoBehaviour
             }
 
         }
-        else if(!finalMove)
+        else if(!finalMove && !GM.isPause)
         {
             FinalMove();
         }
