@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
                     {
                         TakeDamage(damageToDeal);
                     }
-                    else if(cIFrames >= 0)
+                    else
                     {
                         GM.currentScore += 1;
                     }
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
                     {
                         TakeDamage(damageToDeal);
                     }
-                    else if(cIFrames >= 0)
+                    else
                     {
                         GM.currentScore += 1;
                     }
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
                     {
                        TakeDamage(damageToDeal);
                     }
-                    else if(cIFrames >= 0)
+                    else
                     {
                         GM.currentScore += 1;
                     }
