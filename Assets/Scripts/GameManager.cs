@@ -24,11 +24,26 @@ public class GameManager : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField] GameObject Boss;
+    [SerializeField] GameObject BossHpBar;
+    [Space(5)]
+
+    [Header("ResultsScreen")]
+    [SerializeField] TextMeshProUGUI HiScoreResult;
+    [SerializeField] TextMeshProUGUI ScoreResult;
+    [SerializeField] TextMeshProUGUI BulletsMatched;
+    [SerializeField] TextMeshProUGUI BulletsMatchedScore;
+    [SerializeField] TextMeshProUGUI HitsRecieved;
+    [SerializeField] TextMeshProUGUI HitsRecievedScore;
+    [SerializeField] TextMeshProUGUI FinalScore;
+
 
     GameManagerSO.StageState currentState;
 
+
     void Start()
     {
+        Boss.SetActive(false);
+        BossHpBar.SetActive(false);
         GM.isPause = false;
         GM.canPause = true;
         GM.cGState = GameManagerSO.GameState.GameWavesRunning;
@@ -36,7 +51,7 @@ public class GameManager : MonoBehaviour
         GM.gameTime = 1;
         EndScreen.SetActive(false);
         GM.currentScore = 0;
-        GM.currentHiScore = PlayerPrefs.GetFloat("Hi-Score");
+        GM.currentHiScore = PlayerPrefs.GetInt("Hi-Score");
         gameMusic[1].Play();
 
         if (GM.currentHiScore < 999999)
@@ -86,10 +101,11 @@ public class GameManager : MonoBehaviour
 
     void GameEnds()
     {
+        SetFinalResults();
         if (GM.currentHiScore < GM.currentScore)
         {
             GM.currentHiScore = GM.currentScore;
-            PlayerPrefs.SetFloat("Hi-Score", GM.currentScore);
+            PlayerPrefs.SetInt("Hi-Score", GM.currentScore);
             Cursor.visible = true;
             GM.gameTime = 0;
             GM.isPause = true;
@@ -130,10 +146,23 @@ public class GameManager : MonoBehaviour
                     gameMusic[1].Stop();
                     gameMusic[2].Play();
                     Boss.SetActive(true);
+                    BossHpBar.SetActive(true);
                     break;
                 }
             }
         }
+    }
+
+    void SetFinalResults()
+    {
+        HiScoreResult.text = GM.currentHiScore.ToString();
+        ScoreResult.text = GM.currentScore.ToString();
+        BulletsMatched.text = GM.bullMatched.ToString();
+        BulletsMatchedScore.text = (GM.bullMatched * 100).ToString();
+        HitsRecieved.text = GM.hits.ToString();
+        HitsRecievedScore.text = (GM.hits * -100).ToString();
+        GM.finalScore = GM.currentScore + (GM.bullMatched * 100) + (GM.hits * -100);
+        FinalScore.text = GM.finalScore.ToString();
     }
 
 }

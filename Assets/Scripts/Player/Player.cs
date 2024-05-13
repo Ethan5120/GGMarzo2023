@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -34,34 +36,27 @@ public class Player : MonoBehaviour
     float flashTime = -1 ;
 
     [Header("UI Elements")]
-    [SerializeField] hpBar healthBar;
+    [SerializeField] Slider healthBar;
     [SerializeField] AudioSource pauseSFX;
+    
 
-    [Header("TestingParameters")]
-    [SerializeField] int hits;
-    [SerializeField] TextMeshProUGUI Hits;
-    [SerializeField] TextMeshProUGUI Hits2;
-
+    void Awake()
+    {
+        GM.playerHealth = GM.playerMaxHP;
+    }
 
 
     void Start()
     {
-        hits = 0;
-
         bFlash.SetActive(false);
         colorChanger = GetComponent<TestColorSwap>();
         Cursor.visible = false;
-        //healthBar.SetMaxHealth(maxHP);
+        healthBar.value = GM.playerHealth;
     }
 
     
     void Update()
     {
-        //Delete this at the final compilation
-        Hits.text = hits.ToString();
-        Hits2.text = hits.ToString();
-
-
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Debug.Log(mousePos);
         float posYlimited = Mathf.Clamp(mousePos.y, minY, maxY);
@@ -70,22 +65,22 @@ public class Player : MonoBehaviour
         if(!GM.isPause)
         {
             transform.position = new Vector3(posXlimited, posYlimited, 0);
-            if(Input.GetKeyDown(KeyCode.A))
+            if(Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
             {
                 pState = PolarityState.RED;
             }
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
             {
                 pState = PolarityState.BLUE;
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
             {
                 pState = PolarityState.YELLOW;
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
             {
                 pState = PolarityState.NORMAL;
             }
@@ -191,7 +186,7 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        GM.currentScore += 1;
+                        GM.bullMatched += 1;
                     }
                     break;
                 }
@@ -204,7 +199,7 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        GM.currentScore += 1;
+                        GM.bullMatched += 1;
                     }
                     break;
                 }
@@ -217,7 +212,7 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        GM.currentScore += 1;
+                        GM.bullMatched += 1;
                     }
                     break;
                 }
@@ -250,10 +245,10 @@ public class Player : MonoBehaviour
     {
         if(GM.gameTime > 0 )
         {
+            GM.hits++;
             GM.playerHealth -= damageAmount;
-            hits++;
             cIFrames = IFrames;
-            healthBar?.SetHealth(GM.playerHealth);
+            healthBar.value = GM.playerHealth;
             }
     }
 }

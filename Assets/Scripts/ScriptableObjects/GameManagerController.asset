@@ -17,10 +17,13 @@ MonoBehaviour:
   canPause: 1
   isFullScreen: 1
   cGState: 0
-  cStageState: 1
-  playerHealth: -60
-  playerMaxHP: 10
+  cStageState: 3
+  playerHealth: 6
+  playerMaxHP: 15
   bombCharges: 9
   bulletCool: -0.00059233827
-  currentScore: 16
-  currentHiScore: 68
+  currentScore: 17700
+  currentHiScore: 17700
+  bullMatched: 737
+  hits: 0
+  finalScore: 91400

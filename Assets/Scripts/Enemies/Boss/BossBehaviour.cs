@@ -72,6 +72,7 @@ public class BossBehaviour : MonoBehaviour
             hpBar.value = BossCurrentHP;
             if (BossCurrentHP < 0)
             {
+                GM.currentScore += 15000;
                 GM.cStageState = GameManagerSO.StageState.WinStage;
                 gameObject.SetActive(false);
             }

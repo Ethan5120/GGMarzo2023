@@ -60,7 +60,7 @@ public class EnemyBehaviour : PooledObject
 
     protected void Die()
     {
-        GM.currentScore += 50;
+        GM.currentScore += 150;
         deadSound?.Play();
         Release();
     }

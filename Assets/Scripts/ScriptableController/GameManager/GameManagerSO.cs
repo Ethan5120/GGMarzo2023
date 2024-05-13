@@ -22,12 +22,16 @@ public class GameManagerSO : ScriptableObject
     public float playerMaxHP = 10;
     public int bombCharges = 1;
     public float bulletCool = 0.5f;
+
     [Space(5)]
 
 
 
     [Header("ScoreData")]
-    public float currentScore;
-    public float currentHiScore;    
+    public int currentScore;
+    public int currentHiScore;
+    public int bullMatched;
+    public int hits;
+    public int finalScore;    
 
 }
