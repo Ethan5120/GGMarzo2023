@@ -9,6 +9,8 @@ public class GameManagerSO : ScriptableObject
     [Header("GameState")]
     public float gameTime = 1;
     public bool isPause = false;
+    public bool canPause = true;
+    public bool isFullScreen = true;
     public enum GameState {MainMenu, GameWavesRunning, GamePaused, ResultsScreen}
     public GameState cGState;
     public enum StageState{EnemiesStage, BossStage, TutorialStage, WinStage}

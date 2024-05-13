@@ -621,7 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
   GM: {fileID: 11400000, guid: f028946c20c26204b99a5341cc149503, type: 2}
-  MaxHP: 15
+  MaxHP: 20
   HP: 0
   enemyMove: {fileID: 0}
   bulletSpawn: {fileID: 0}

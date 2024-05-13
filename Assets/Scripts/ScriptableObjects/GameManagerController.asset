@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTime: 0
   isPause: 1
+  canPause: 1
+  isFullScreen: 1
   cGState: 0
-  cStageState: 0
-  playerHealth: 10
+  cStageState: 1
+  playerHealth: -60
   playerMaxHP: 10
   bombCharges: 9
   bulletCool: -0.00059233827
-  currentScore: 1474
-  currentHiScore: 1488
+  currentScore: 16
+  currentHiScore: 68

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5060622718580758234}
   - component: {fileID: 8408342702891246757}
   - component: {fileID: 194659509461952128}
-  - component: {fileID: 1593998155925957386}
   - component: {fileID: 4484392339581892595}
   m_Layer: 7
   m_Name: Bullet1
@@ -122,33 +121,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.118911505
---- !u!50 &1593998155925957386
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6974354175936669318}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &4484392339581892595
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossBehaviour : MonoBehaviour
 {
     [Header("GameManager")]
     [SerializeField] GameManagerSO GM;
-
+    [Space(5)]
+    [Header("Boss Data")]
     [SerializeField] int BossCurrentHP;
     [SerializeField] int BossMaxHP;
     [SerializeField] BossMovement bossMovement;
@@ -16,6 +15,10 @@ public class BossBehaviour : MonoBehaviour
     int nSpawners;
     [SerializeField] BulletSpawnerPrime lastResort;
     [SerializeField] float bossThreshold;
+    [Space(5)]
+
+    [Header("UI")]
+    [SerializeField] Slider hpBar;
 
     void Awake()
     {
@@ -66,6 +69,7 @@ public class BossBehaviour : MonoBehaviour
         if(bossMovement.reachedFirst)
         {
             BossCurrentHP -= damage;
+            hpBar.value = BossCurrentHP;
             if (BossCurrentHP < 0)
             {
                 GM.cStageState = GameManagerSO.StageState.WinStage;

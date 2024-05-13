@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
 
     [Header("ScoreSettings")]
     [SerializeField] TextMeshProUGUI Score, HiScore;
+    [Space(5)]
+    [Header("UIData")]
+    [SerializeField] GameObject PauseMenu;
+    [SerializeField] GameObject EndScreen;
+    [Space(5)]
 
     [Header("Boss")]
     [SerializeField] GameObject Boss;
@@ -24,6 +29,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        GM.isPause = false;
+        GM.canPause = true;
+        GM.cGState = GameManagerSO.GameState.GameWavesRunning;
+        GM.cStageState = GameManagerSO.StageState.EnemiesStage;
+        GM.gameTime = 1;
+        EndScreen.SetActive(false);
         GM.currentScore = 0;
         GM.currentHiScore = PlayerPrefs.GetFloat("Hi-Score");
         gameMusic[1].Play();
@@ -42,6 +53,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         ChangeSong();
+        if(GM.cGState == GameManagerSO.GameState.GamePaused)
+        {
+            PauseMenu.SetActive(true);
+        }
+        else
+        {
+            PauseMenu.SetActive(false);
+        }
 
         if (GM.playerHealth <= 0)
         {
@@ -71,6 +90,11 @@ public class GameManager : MonoBehaviour
         {
             GM.currentHiScore = GM.currentScore;
             PlayerPrefs.SetFloat("Hi-Score", GM.currentScore);
+            Cursor.visible = true;
+            GM.gameTime = 0;
+            GM.isPause = true;
+            GM.canPause = true;
+            EndScreen.SetActive(true);
         }
         //Activate RResults Panel
     }

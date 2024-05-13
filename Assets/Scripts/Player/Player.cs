@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     [Header("TestingParameters")]
     [SerializeField] int hits;
     [SerializeField] TextMeshProUGUI Hits;
+    [SerializeField] TextMeshProUGUI Hits2;
+
 
 
     void Start()
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
     {
         //Delete this at the final compilation
         Hits.text = hits.ToString();
+        Hits2.text = hits.ToString();
 
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -96,18 +99,23 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseSFX?.Play();
-            if(GM.isPause)
-            {
-                GM.isPause = false;
-                GM.gameTime = 1;
-                Cursor.visible = false;
-            }
-            else
-            {
-                GM.isPause = true;
-                GM.gameTime = 0;
-                Cursor.visible = true;
+            if(GM.canPause)
+            {  
+                pauseSFX?.Play();
+                if(GM.isPause)
+                {
+                    GM.isPause = false;
+                    GM.gameTime = 1;
+                    Cursor.visible = false;
+                    GM.cGState = GameManagerSO.GameState.GameWavesRunning;
+                }
+                else
+                {
+                    GM.isPause = true;
+                    GM.gameTime = 0;
+                    GM.cGState = GameManagerSO.GameState.GamePaused;
+                    Cursor.visible = true;
+                }
             }
         }
         
@@ -240,9 +248,12 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        GM.playerHealth -= damageAmount;
-        hits++;
-        cIFrames = IFrames;
-        healthBar?.SetHealth(GM.playerHealth);
+        if(GM.gameTime > 0 )
+        {
+            GM.playerHealth -= damageAmount;
+            hits++;
+            cIFrames = IFrames;
+            healthBar?.SetHealth(GM.playerHealth);
+            }
     }
 }
