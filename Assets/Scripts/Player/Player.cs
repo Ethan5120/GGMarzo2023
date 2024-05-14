@@ -180,11 +180,11 @@ public class Player : MonoBehaviour
         {
             case bulletEnemyFather.PolarityType.REDB:
                 {
-                    if (pState != PolarityState.RED && cIFrames < 0)
+                    if (pState != PolarityState.RED)
                     {
                         TakeDamage(damageToDeal);
                     }
-                    else
+                    else 
                     {
                         GM.bullMatched += 1;
                     }
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
 
             case bulletEnemyFather.PolarityType.BLUEB:
                 {
-                    if (pState != PolarityState.BLUE && cIFrames < 0)
+                    if (pState != PolarityState.BLUE)
                     {
                         TakeDamage(damageToDeal);
                     }
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
 
             case bulletEnemyFather.PolarityType.YELLOWB:
                 {
-                    if (pState != PolarityState.YELLOW && cIFrames < 0)
+                    if (pState != PolarityState.YELLOW)
                     {
                        TakeDamage(damageToDeal);
                     }
@@ -243,7 +243,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if(GM.gameTime > 0 )
+        if(GM.gameTime > 0  && cIFrames < 0)
         {
             GM.hits++;
             GM.playerHealth -= damageAmount;

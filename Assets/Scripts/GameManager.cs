@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        GM.bullMatched = 0;
+        GM.hits = 0;
         Boss.SetActive(false);
         BossHpBar.SetActive(false);
         GM.isPause = false;
@@ -102,17 +104,16 @@ public class GameManager : MonoBehaviour
     void GameEnds()
     {
         SetFinalResults();
+        Cursor.visible = true;
+        GM.gameTime = 0;
+        GM.isPause = true;
+        GM.canPause = true;
+        EndScreen.SetActive(true);
         if (GM.currentHiScore < GM.currentScore)
         {
             GM.currentHiScore = GM.currentScore;
             PlayerPrefs.SetInt("Hi-Score", GM.currentScore);
-            Cursor.visible = true;
-            GM.gameTime = 0;
-            GM.isPause = true;
-            GM.canPause = true;
-            EndScreen.SetActive(true);
         }
-        //Activate RResults Panel
     }
 
     void ChangeSong()
