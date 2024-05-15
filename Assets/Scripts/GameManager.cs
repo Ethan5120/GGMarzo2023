@@ -7,9 +7,6 @@ public class GameManager : MonoBehaviour
     [Header("GameManager")]
     [SerializeField] GameManagerSO GM;
 
-    [Header("BombState")]
-    [SerializeField] Image[] bChargesDisplay;
-
     [Header("AudioData")]
     public AudioSource[] gameMusic;
     [Space(5)]
@@ -42,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        GM.bombCharges = 3;
         GM.bullMatched = 0;
         GM.hits = 0;
         Boss.SetActive(false);
@@ -111,8 +109,8 @@ public class GameManager : MonoBehaviour
         EndScreen.SetActive(true);
         if (GM.currentHiScore < GM.currentScore)
         {
-            GM.currentHiScore = GM.currentScore;
-            PlayerPrefs.SetInt("Hi-Score", GM.currentScore);
+            GM.currentHiScore = GM.finalScore;
+            PlayerPrefs.SetInt("Hi-Score", GM.currentHiScore);
         }
     }
 

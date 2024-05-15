@@ -15,6 +15,7 @@ public class BossBehaviour : MonoBehaviour
     int nSpawners;
     [SerializeField] BulletSpawnerPrime lastResort;
     [SerializeField] float bossThreshold;
+    [SerializeField] AudioSource faceChange;
     [Space(5)]
 
     [Header("UI")]
@@ -44,10 +45,12 @@ public class BossBehaviour : MonoBehaviour
         if (bossThreshold <= 8f && !BossArms[0].activeSelf)
         {
             BossArms[0].SetActive(true);
+            faceChange?.Play();
         }
         if (bossThreshold <= 4f && !BossArms[1].activeSelf)
         {
             BossArms[1].SetActive(true);
+            faceChange?.Play();
         }
         if(bossThreshold <= 1 && !bossMovement.isDying)
         {
@@ -56,11 +59,13 @@ public class BossBehaviour : MonoBehaviour
                 normalSpawners[i].willFire = false;
             }
             bossMovement.isDying = true;
+            faceChange?.Play();
         }
         if(bossMovement.finalMove)
         {
             lastResort.willFire = true;
         }
+
     }
 
 

@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] TestColorSwap colorChanger;
     public PolarityState pState = PolarityState.NORMAL;
     public float IFrames = 5;
-    float cIFrames;
+    public float cIFrames;
+    [SerializeField] AudioSource damageSFX;
 
     [Space(5)]
 
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     [Header("BombData")]
     [SerializeField] GameObject bFlash;
     [SerializeField] AudioSource bombSFX;
+    [SerializeField] Image[] bombDisplay;
     float fireCool = 0;
     float flashTime = -1 ;
 
@@ -119,9 +121,11 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && GM?.bombCharges > 0)
         {
             ClearScreen();
+            bombSFX.Play();
             flashTime = 0.1f;
             GM.bulletCool = 0.5f;
             GM.bombCharges -= 1;
+            UpdateBomb();
         }
 
         if (Input.GetButton("Fire1") && fireCool <= 0 && !GM.isPause)
@@ -133,7 +137,10 @@ public class Player : MonoBehaviour
 
         if(fireCool >= 0) {fireCool -= Time.deltaTime * GM.gameTime;}
         if(GM.bulletCool >= 0) {GM.bulletCool -= Time.deltaTime * GM.gameTime;}
-        if(cIFrames >= 0) {cIFrames -= Time.deltaTime* GM.gameTime;}
+        if(cIFrames >= 0) 
+        {
+            cIFrames -= Time.deltaTime* GM.gameTime;
+        }
 
         if(flashTime >= 0)
         {
@@ -151,22 +158,34 @@ public class Player : MonoBehaviour
         {
             case PolarityState.NORMAL:
                 {
-                    colorChanger.colorNumber = 0;
+                    if(colorChanger.colorNumber != 0) 
+                    {
+                        colorChanger.colorNumber = 0;
+                    }
                     break;
                 }
             case PolarityState.RED:
                 {
-                    colorChanger.colorNumber = 1;
+                    if(colorChanger.colorNumber != 1) 
+                    {
+                        colorChanger.colorNumber = 1;
+                    }
                     break;
                 }
             case PolarityState.BLUE:
                 {
-                    colorChanger.colorNumber = 2;
+                    if(colorChanger.colorNumber != 2) 
+                    {
+                        colorChanger.colorNumber = 2;
+                    }
                     break;
                 }
             case PolarityState.YELLOW:
                 {
-                    colorChanger.colorNumber = 3;
+                    if(colorChanger.colorNumber != 3) 
+                    {
+                        colorChanger.colorNumber = 3;
+                    }
                     break;
                 }
         }
@@ -245,10 +264,36 @@ public class Player : MonoBehaviour
     {
         if(GM.gameTime > 0  && cIFrames < 0)
         {
+            ScreenShake.Instance.ShakeCamera(1, 0.3f);
+            damageSFX?.Play();
             GM.hits++;
             GM.playerHealth -= damageAmount;
             cIFrames = IFrames;
             healthBar.value = GM.playerHealth;
             }
     }
+
+    void UpdateBomb()
+    {
+        switch(GM.bombCharges)
+        {
+            case 0:
+            {
+                bombDisplay[GM.bombCharges].gameObject.SetActive(false);
+                break;
+            }
+            case 1:
+            {
+                bombDisplay[GM.bombCharges].gameObject.SetActive(false);
+                break;
+            }
+            case 2:
+            {
+                bombDisplay[GM.bombCharges].gameObject.SetActive(false);
+                break;
+            }
+
+        }
+    }
 }
+ 
